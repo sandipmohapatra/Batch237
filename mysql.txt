@@ -1,5 +1,4 @@
-Tasmiya.7.Taranum@stackroute.in
-------------------------------------------------------
+https://dev.mysql.com/downloads/installer/
 
 Mysql notes
 ----------------------------------------------------
@@ -43,11 +42,23 @@ to drop a table
 drop table student;
 
 to drop a database
-drop database daimler;
+drop database student;
+
+delete all the rows or data but the structure of the table will be there
+truncate table student;
 
 to update a row
 update student set address='pune' where rollno=101;
 --------------------------------------------------------------------------------------------
+create table fare(id INT AUTO_INCREMENT ,fare varchar(25),flight_date varchar(25),flight_number varchar(25),primary key(id)) ;
+
+*primary key :- if we declare the column as primary key then the column is unique and not null.
+we cannot enter duplicate values nor we can leave the field empty.
+
+
+insert into fare(fare,flight_date,flight_number) values('hyd-bang','12-jul-2024','air-207');
+
+-----------------------------------------------------------------------------------------------------------
 wild character
 select * from student where name like 's%';
 select * from student where name like '%p';
