@@ -1,4 +1,11 @@
 https://dev.mysql.com/downloads/installer/
+chat gpt
+sanfoundry
+javaTpoint
+geeksforgeeks
+W3schools
+
+
 
 Mysql notes
 ----------------------------------------------------
