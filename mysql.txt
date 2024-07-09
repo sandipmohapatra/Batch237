@@ -1,11 +1,4 @@
 https://dev.mysql.com/downloads/installer/
-chat gpt
-sanfoundry
-javaTpoint
-geeksforgeeks
-W3schools
-
-
 
 Mysql notes
 ----------------------------------------------------
@@ -66,6 +59,20 @@ we cannot enter duplicate values nor we can leave the field empty.
 insert into fare(fare,flight_date,flight_number) values('hyd-bang','12-jul-2024','air-207');
 
 -----------------------------------------------------------------------------------------------------------
+create table booking_record (id INT primary key AUTO_INCREMENT,
+booking_date timestamp, 
+destination VARCHAR(255), 
+price VARCHAR(255), 
+flight_date VARCHAR(255), 
+flight_number VARCHAR(255),
+origin VARCHAR(255), 
+status VARCHAR(255));
+
+insert into booking_record(booking_date,destination,price,flight_date,flight_number,origin,status) values('2024-07-10 5:00','Pune','Rs 5000','12-jul-2024','air-206','Hyd','yes');
+
+
+--------------------------------------------------------------------------------------------------------
+
 wild character
 select * from student where name like 's%';
 select * from student where name like '%p';
