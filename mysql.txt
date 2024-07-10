@@ -288,26 +288,27 @@ ALTER TABLE Persons
 DROP PRIMARY KEY;
 --------------------------------------------------------------------------
 Example of foreign key
------------------------------------
+-----------------------------------Master Table-------------------------------
 CREATE TABLE bank(accno INT PRIMARY KEY,NAME VARCHAR(30) NOT NULL,address VARCHAR(30) UNIQUE, branch VARCHAR(30))
-
+------------------------------------------------------------------------------------------
 INSERT INTO bank VALUES(101,'sunil','Chennei','Karadi');
 INSERT INTO bank VALUES(102,'Kiran','Pune', 'Karadi');
 INSERT INTO bank VALUES(103,'sandip','Bangalore', 'Karadi');
-
+-------------------------------------------------------------------------
 SELECT * FROM bank;
 
 --------------------------------------------------------------------------------------------------
-
+child table
+------------------------------
 CREATE TABLE customer(accno INT,
 bal INT NOT NULL,city VARCHAR(30) NOT NULL,
 FOREIGN KEY (accno) REFERENCES bank(accno));
-
+----------------------------------------------------------------------------------------
 INSERT INTO customer VALUES(101,5000,'Pune');
 INSERT INTO customer VALUES(101,3000,'Pune');
 INSERT INTO customer VALUES(102,4000,'Bangalore');
 INSERT INTO customer VALUES(102,2000,'Pune');
-
+----------------------------------------------------------------------------------------------
 SELECT * FROM customer;
 ----------------------------------------------------------------------------------------------------
 
