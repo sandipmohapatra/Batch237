@@ -93,8 +93,34 @@ CREATE TABLE Books (
         CHECK (Author_Name IS NOT NULL)
 );
 
-
+---------------------------------------------
+CREATE TABLE Categories (
+    Category_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Category_Name VARCHAR(255) UNIQUE NOT NULL
+);
 --------------------------------------------------------------------------------------------------------
+CREATE TABLE Publishers (
+    Publisher_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Publisher_Name VARCHAR(255) NOT NULL
+);
+-------------------------------------------------------------------------------------
+CREATE TABLE Users (
+    User_Id INT PRIMARY KEY ,
+    Username VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Phone_Number VARCHAR(255) UNIQUE NOT NULL
+);
+-----------------------------------------------------------------------------------------------
+CREATE TABLE Borrowings (
+    Borrow_Id INT PRIMARY KEY ,
+    User_Id INT,
+    Book_Id INT,
+    Borrow_Date DATE NOT NULL,
+    Return_Date DATE NOT NULL,
+    FOREIGN KEY (User_Id) REFERENCES Users(User_Id) ON DELETE CASCADE,
+    FOREIGN KEY (Book_Id) REFERENCES Books(Book_Id) ON DELETE CASCADE
+);
+-------------------------------------------------------------------------------------------------------
 
 wild character
 select * from student where name like 's%';
