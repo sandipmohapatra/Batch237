@@ -60,6 +60,7 @@ we cannot enter duplicate values nor we can leave the field empty.
 
 insert into fare(fare,flight_date,flight_number) values('hyd-bang','12-jul-2024','air-207');
 
+ALTER TABLE users MODIFY id INT NOT NULL AUTO_INCREMENT;
 -----------------------------------------------------------------------------------------------------------
 time stamp (2024-07-10 5:00)
 ---------------------------------------------------------
@@ -311,6 +312,35 @@ INSERT INTO customer VALUES(102,2000,'Pune');
 ----------------------------------------------------------------------------------------------
 SELECT * FROM customer;
 ----------------------------------------------------------------------------------------------------
+delete from bank where accno=102
+
+Error Code: 1451
+Cannot delete or update a parent row: a foreign key constraint fails (`mphasis237`.`customer`, CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`accno`) REFERENCES `bank` (`accno`))
+------------------------------------------------------------------------------
+ON DELETE CASCADE :If we delete the parent data the child referred data will be automatically deleted.
+
+if we don't use on delete cascade it will give error message 
+and will not able to delete as in the child table the referred data will be present.
+Error Code: 1451
+Cannot delete or update a parent row: a foreign key constraint fails (`mphasis237`.`customer`, CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`accno`) REFERENCES `bank` (`accno`))
+-------------------------------------------------------------------------------------------
+CREATE TABLE bank(accno INT PRIMARY KEY,NAME VARCHAR(30) NOT NULL, address VARCHAR(30) UNIQUE, branch VARCHAR(30))
+
+INSERT INTO bank VALUES(103,'sunil','Chennei','Karadi');
+SELECT * FROM bank;
+
+DELETE FROM bank WHERE accno=102 ;
+
+DROP TABLE customer;
+
+CREATE TABLE customer(accno INT,
+bal INT NOT NULL,city VARCHAR(30) NOT NULL,
+FOREIGN KEY (accno) REFERENCES bank(accno)ON DELETE CASCADE);
+
+INSERT INTO customer VALUES(102,4000,'Pune');
+
+SELECT * FROM customer;
+--------------------------------------------------------------------------------------------------------
 
 CREATE TABLE Orders (
     OrderID int NOT NULL,
