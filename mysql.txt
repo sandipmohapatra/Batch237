@@ -220,14 +220,14 @@ CHECK - Ensures that the values in a column satisfies a specific condition
 DEFAULT - Sets a default value for a column if no value is specified
 CREATE INDEX - Used to create and retrieve data from the database very quickly
 -------------------------------------------------------------------------------------------------------------
-CREATE TABLE Persons (
+CREATE TABLE Persons1 (
     ID int NOT NULL,
     LastName varchar(255) NOT NULL,
     FirstName varchar(255) NOT NULL,
     Age int
 );
 ----------------------------------------------------------------------------------
-CREATE TABLE Persons (
+CREATE TABLE Persons2 (
     ID int NOT NULL,
     LastName varchar(255) NOT NULL,
     FirstName varchar(255),
@@ -235,7 +235,7 @@ CREATE TABLE Persons (
     UNIQUE (ID)
 );
 ---------------------------------------------------------------------
-CREATE TABLE Persons (
+CREATE TABLE Persons3 (
     ID int NOT NULL,
     LastName varchar(255) NOT NULL,
     FirstName varchar(255),
