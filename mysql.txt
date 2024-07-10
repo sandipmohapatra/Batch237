@@ -34,22 +34,24 @@ update student set phy=68,chem=63,bio=64 where rollno=103;
 update student set phy=78,chem=73,bio=84 where rollno=102;
 update student set tot=phy+chem+bio ;
 update student set avg=tot/3;
-
+----------------------------------------------------------------------------
 to delete a row
 delete from student where rollno=101;
-
+-----------------------------------------------------------------------------
 to drop a table
 drop table student;
-
+----------------------------------------------------------------------------------
 to drop a database
-drop database student;
-
+drop database Mphasis237;
+--------------------------------------------------------------------------------------------
 delete all the rows or data but the structure of the table will be there
 truncate table student;
-
+-------------------------------------------------------------------------------------------
 to update a row
 update student set address='pune' where rollno=101;
 --------------------------------------------------------------------------------------------
+Auto-Increment
+----------------------------------
 create table fare(id INT AUTO_INCREMENT ,fare varchar(25),flight_date varchar(25),flight_number varchar(25),primary key(id)) ;
 
 *primary key :- if we declare the column as primary key then the column is unique and not null.
@@ -59,6 +61,8 @@ we cannot enter duplicate values nor we can leave the field empty.
 insert into fare(fare,flight_date,flight_number) values('hyd-bang','12-jul-2024','air-207');
 
 -----------------------------------------------------------------------------------------------------------
+time stamp (2024-07-10 5:00)
+---------------------------------------------------------
 create table booking_record (id INT primary key AUTO_INCREMENT,
 booking_date timestamp, 
 destination VARCHAR(255), 
@@ -69,6 +73,24 @@ origin VARCHAR(255),
 status VARCHAR(255));
 
 insert into booking_record(booking_date,destination,price,flight_date,flight_number,origin,status) values('2024-07-10 5:00','Pune','Rs 5000','12-jul-2024','air-206','Hyd','yes');
+---------------------------------------------------------------------------------------
+CREATE TABLE Books (
+    Book_Id INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    ISBN VARCHAR(13) UNIQUE NOT NULL,
+    Publication_year INT NOT NULL,
+    Publisher_Id INT,
+    Category_Id INT,
+    Author_Name VARCHAR(255),
+    CONSTRAINT fk_publisher
+        FOREIGN KEY (Publisher_Id) REFERENCES Publishers(Publisher_Id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_category
+        FOREIGN KEY (Category_Id) REFERENCES Categories(Category_Id)
+        ON DELETE CASCADE,
+    CONSTRAINT chk_author_name
+        CHECK (Author_Name IS NOT NULL)
+);
 
 
 --------------------------------------------------------------------------------------------------------
@@ -78,10 +100,7 @@ select * from student where name like 's%';
 select * from student where name like '%p';
 
 -------------------------------------------------------
-to drop database
-4)drop database daimler;
------------------------------------------------------------------------
-to create a table
+To create a table
 5)create table student2
 ( studid int not null auto_increment,
 name varchar(30) not null,
@@ -190,6 +209,152 @@ address VARCHAR(30) DEFAULT NULL,
 location VARCHAR(30) DEFAULT NULL,
 PRIMARY KEY(studid,NAME)
 );
+-------------------------------------------------------------------------------------
+constraints 
+---------------------------------------
+NOT NULL - Ensures that a column cannot have a NULL value
+UNIQUE - Ensures that all values in a column are different
+PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+FOREIGN KEY - It links between two tables
+CHECK - Ensures that the values in a column satisfies a specific condition
+DEFAULT - Sets a default value for a column if no value is specified
+CREATE INDEX - Used to create and retrieve data from the database very quickly
+-------------------------------------------------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255) NOT NULL,
+    Age int
+);
+----------------------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    UNIQUE (ID)
+);
+---------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CONSTRAINT mphasis_emp UNIQUE (ID,LastName)
+);
+-------------------------------------------------------------------------------
+ALTER TABLE Persons
+DROP INDEX mphasis_emp;
+------------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (ID)
+);
+--------------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+);
+-----------------------------------------------------------------------------
+ALTER TABLE Persons
+ADD PRIMARY KEY (ID);
+----------------------------------------------------------
+ALTER TABLE Persons
+ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName);
+----------------------------------------------------------------------
+ALTER TABLE Persons
+DROP PRIMARY KEY;
+--------------------------------------------------------------------------
+CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+);
+---------------------------------------------------------------------------------------
+CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    CONSTRAINT FK_PersonOrder FOREIGN KEY (PersonID)
+    REFERENCES Persons(PersonID)
+);
+-----------------------------------------------------------------------------
+ALTER TABLE Orders
+ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+------------------------------------------------------------------------------------
+ALTER TABLE Orders
+ADD CONSTRAINT FK_PersonOrder
+FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+----------------------------------------------------------------------
+ALTER TABLE Orders
+DROP FOREIGN KEY FK_PersonOrder;
+-------------------------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CHECK (Age>=18)
+);
+---------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255),
+    CONSTRAINT CHK_Person CHECK (Age>=18 AND City='Bangalore')
+);
+----------------------------------------------------------------------------
+ALTER TABLE Persons
+ADD CHECK (Age>=18);
+------------------------------------------------------
+ALTER TABLE Persons
+ADD CONSTRAINT CHK_PersonAge CHECK (Age>=18 AND City='Bangalore');
+------------------------------------------------------------
+ALTER TABLE Persons
+DROP CHECK CHK_PersonAge;
+--------------------------------------------------------------------------
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255) DEFAULT 'Bangalore'
+);
+-----------------------------------------------------------------
+CREATE TABLE Orders (
+    ID int NOT NULL,
+    OrderNumber int NOT NULL,
+    OrderDate date DEFAULT CURRENT_DATE()
+);
+-----------------------------------------------
+ALTER TABLE Persons
+ALTER City SET DEFAULT 'Bangalore';
+------------------------------------------------------------------
+ALTER TABLE Persons
+ALTER City DROP DEFAULT;
+-------------------------------------------------------------------------
+CREATE INDEX idx_lastname
+ON Persons (LastName);
+-------------------------------------------------------------------------
+CREATE INDEX idx_pname
+ON Persons (LastName, FirstName);
+---------------------------------------------------------------
+ALTER TABLE table_name
+DROP INDEX index_name;
+----------------------------------------------------------------
+
+
 ------------------------------End Of MySql-----------------------------------
 JDBC
 ---------------
