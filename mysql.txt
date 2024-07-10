@@ -210,11 +210,20 @@ location VARCHAR(30) DEFAULT NULL,
 PRIMARY KEY(studid,NAME)
 );
 -------------------------------------------------------------------------------------
+clone as table
+------------------------
+CREATE TABLE persons5 AS SELECT * FROM persons4;
+---------------------------------------------------------------------------------------
+To see non duplicate values
+SELECT DISTINCT id FROM persons4;
+SELECT DISTINCT id,lastname,firstname,age FROM persons4;
+--------------------------------------------------------------------------------------------
 constraints 
 ---------------------------------------
 NOT NULL - Ensures that a column cannot have a NULL value
 UNIQUE - Ensures that all values in a column are different
 PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+
 FOREIGN KEY - It links between two tables
 CHECK - Ensures that the values in a column satisfies a specific condition
 DEFAULT - Sets a default value for a column if no value is specified
@@ -242,8 +251,15 @@ CREATE TABLE Persons3 (
     Age int,
     CONSTRAINT mphasis_emp UNIQUE (ID,LastName)
 );
+---------------------------------------------------------
+101,'kumar'
+101,'kumar'
+-----------------------------------------
+101,'Mohan'
+102,'Kumar'
+
 -------------------------------------------------------------------------------
-ALTER TABLE Persons
+ALTER TABLE Persons3
 DROP INDEX mphasis_emp;
 ------------------------------------------------------------------------
 CREATE TABLE Persons (
@@ -271,6 +287,30 @@ ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName);
 ALTER TABLE Persons
 DROP PRIMARY KEY;
 --------------------------------------------------------------------------
+Example of foreign key
+-----------------------------------
+CREATE TABLE bank(accno INT PRIMARY KEY,NAME VARCHAR(30) NOT NULL,address VARCHAR(30) UNIQUE, branch VARCHAR(30))
+
+INSERT INTO bank VALUES(101,'sunil','Chennei','Karadi');
+INSERT INTO bank VALUES(102,'Kiran','Pune', 'Karadi');
+INSERT INTO bank VALUES(103,'sandip','Bangalore', 'Karadi');
+
+SELECT * FROM bank;
+
+--------------------------------------------------------------------------------------------------
+
+CREATE TABLE customer(accno INT,
+bal INT NOT NULL,city VARCHAR(30) NOT NULL,
+FOREIGN KEY (accno) REFERENCES bank(accno));
+
+INSERT INTO customer VALUES(101,5000,'Pune');
+INSERT INTO customer VALUES(101,3000,'Pune');
+INSERT INTO customer VALUES(102,4000,'Bangalore');
+INSERT INTO customer VALUES(102,2000,'Pune');
+
+SELECT * FROM customer;
+----------------------------------------------------------------------------------------------------
+
 CREATE TABLE Orders (
     OrderID int NOT NULL,
     OrderNumber int NOT NULL,
