@@ -307,13 +307,13 @@ CREATE TABLE Persons (
 -----------------------------------------------------------------------------
 ALTER TABLE Persons
 ADD PRIMARY KEY (ID);
-----------------------------------------------------------
+-----------------------------------------------------------------------------
 ALTER TABLE Persons
 ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName);
-----------------------------------------------------------------------
+----------------------------------------------------------------------------------
 ALTER TABLE Persons
 DROP PRIMARY KEY;
---------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
 Example of foreign key
 -----------------------------------Master Table-------------------------------
 CREATE TABLE bank(accno INT PRIMARY KEY,NAME VARCHAR(30) NOT NULL,address VARCHAR(30) UNIQUE, branch VARCHAR(30))
@@ -395,7 +395,7 @@ FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
 ALTER TABLE Orders
 DROP FOREIGN KEY FK_PersonOrder;
 -------------------------------------------------------------------------------------
-CREATE TABLE Persons (
+CREATE TABLE Persons10 (
     ID int NOT NULL,
     LastName varchar(255) NOT NULL,
     FirstName varchar(255),
@@ -403,7 +403,7 @@ CREATE TABLE Persons (
     CHECK (Age>=18)
 );
 ---------------------------------------------------------------------
-CREATE TABLE Persons (
+CREATE TABLE Persons11 (
     ID int NOT NULL,
     LastName varchar(255) NOT NULL,
     FirstName varchar(255),
@@ -421,7 +421,7 @@ ADD CONSTRAINT CHK_PersonAge CHECK (Age>=18 AND City='Bangalore');
 ALTER TABLE Persons
 DROP CHECK CHK_PersonAge;
 --------------------------------------------------------------------------
-CREATE TABLE Persons (
+CREATE TABLE Persons12 (
     ID int NOT NULL,
     LastName varchar(255) NOT NULL,
     FirstName varchar(255),
@@ -432,9 +432,10 @@ CREATE TABLE Persons (
 CREATE TABLE Orders (
     ID int NOT NULL,
     OrderNumber int NOT NULL,
-    OrderDate date DEFAULT CURRENT_DATE()
-);
+    OrderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 -----------------------------------------------
+insert into orders(id,ordernumber) values(101,1001);
+---------------------------------------------------------------------------------------------
 ALTER TABLE Persons
 ALTER City SET DEFAULT 'Bangalore';
 ------------------------------------------------------------------
