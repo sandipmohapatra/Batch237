@@ -602,6 +602,36 @@ inner/equi join:-In 2 tables one column show be same
 select a.id, a.name, a.address, b.totalmarks, b.grade from studentMp a, marks b where 
 a.id=b.id;
 ------------------------------------------------------------------------------------------
+INNER JOIN
+--------------------------
+SELECT studentMp.id, studentMp.name, studentMp.address, marks.totalmarks, marks.grade FROM studentMp
+INNER JOIN marks ON studentMp.id = marks.id;
+-----------------------------------------------------------------------------------------------------
+LEFT JOIN
+-------------------------
+SELECT studentMp.id, studentMp.name, studentMp.address, marks.totalmarks, marks.grade FROM studentMp
+LEFT JOIN  marks ON studentMp.id = marks.id;
+-------------------------------------------------------------------------------
+RIGHT JOIN
+-------------------------
+SELECT marks.id, studentMp.name, studentMp.address, marks.totalmarks, marks.grade FROM studentMp
+RIGHT JOIN  marks ON studentMp.id = marks.id;
+-------------------------------------------------------------------------------
+INNER JOIN
+--------------------------------
+SELECT studentMp.*, marks.* FROM studentMp
+INNER JOIN marks ON studentMp.id = marks.id;
+-----------------------------------------------------------------------------------------------------
+LEFT JOIN
+-------------------------
+SELECT studentMp.*, marks.* FROM studentMp
+LEFT JOIN  marks ON studentMp.id = marks.id;
+-------------------------------------------------------------------------------
+RIGHT JOIN
+-------------------------
+SELECT studentMp.*, marks.*, FROM studentMp
+RIGHT JOIN  marks ON studentMp.id = marks.id;
+-------------------------------------------------------------------------------
 
 
 
