@@ -150,8 +150,9 @@ CREATE TABLE student (
     Id INT PRIMARY KEY ,
     name VARCHAR(255) NOT NULL,
     Email VARCHAR(255) UNIQUE NOT NULL,
-    Phone VARCHAR(255) UNIQUE NOT NULL
-);
+    Phone VARCHAR(255) UNIQUE NOT NULL,
+    Address varchar(50),
+     Salary INT);
 --------------------------------------------------------------------------------
 select * from student where name like 's%';
 -----------------------------------------------------------------------------------
@@ -573,6 +574,36 @@ WHERE Price BETWEEN 10 AND 20;
 SELECT * FROM Products
 WHERE Price NOT BETWEEN 10 AND 20;
 ---------------------------------------------------------------------------------
+Joins
+--------------------
+inner join, equi-join
+outer join--left outer ,right outer
+non equi-join
+self join
+----------------------------------------------------------------------------
+CREATE TABLE studentMp (
+    Id INT ,
+    name VARCHAR(255) NOT NULL,
+    Address varchar(50));
+----------------------------------------------------------------------------------------------
+create table marks(Id int, totalmarks int,grade varchar(30));
+----------------------------------------------------------------------------------------------  
+insert into studentMp values(101,'sandip','Bangalore'),
+    (102,'sunil','Pune'),(103,'kiran','Hyd');
+---------------------------------------------------------------------------------------
+insert into marks values(101,350,'First Division'),
+    (102,333,'First division'),
+    (103,202,'Second division');
+--------------------------------------------------------------------------------------------------
+To want to display the id, name, address, total marks and grade
+----------------------------------------------------------------------------------------
+inner/equi join:-In 2 tables one column show be same
+---------------------------------------------------------------------------
+select a.id, a.name, a.address, b.totalmarks, b.grade from studentMp a, marks b where 
+a.id=b.id;
+------------------------------------------------------------------------------------------
+
+
 
 
 ------------------------------End Of MySql-----------------------------------
@@ -815,7 +846,100 @@ public static void main(String[] args)throws Exception
 		st.execute();
 		System.out.println("row inserted");
 			}}
--------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+In the context of Relational Database Management Systems (RDBMS), ACID stands for Atomicity, Consistency, Isolation, and Durability. These are the key properties that ensure reliable processing of database transactions. Here's a brief explanation of each property:
+
+Atomicity:
+
+Ensures that each transaction is treated as a single unit, which either succeeds completely or fails completely. If any part of the transaction fails, the entire transaction is rolled back, leaving the database state unchanged.
+Example: In a banking system, transferring money from one account to another involves debiting one account and crediting another. Atomicity ensures that both operations either succeed together or fail together.
+Consistency:
+
+Ensures that a transaction brings the database from one valid state to another valid state, maintaining the integrity constraints. Any transaction will bring the database into a valid state, meaning all rules and constraints are still satisfied after the transaction.
+Example: If a database rule requires that all account balances must be positive, a transaction that would result in a negative balance will be aborted.
+Isolation:
+
+Ensures that transactions are executed in isolation from one another. Even though transactions may run concurrently, they are isolated in such a way that they do not interfere with each other. The results of transactions occurring concurrently must be the same as if they occurred in some serial order.
+Example: If two transactions are updating the same data simultaneously, isolation ensures that one transaction's updates are not visible to the other until the first transaction is complete.
+Durability:
+
+Ensures that once a transaction has been committed, it will remain so, even in the event of a system failure. The changes made by the transaction are permanently recorded in the database.
+Example: After a transaction commits the transfer of money from one account to another, this change will persist even if the system crashes immediately afterward.
+ACID properties are essential for maintaining the reliability, accuracy, and robustness of databases, especially in systems that require a high level of data integrity and consistency.
+
+-----------------------------------------------------------------------------------------------------
+A Database Management System (DBMS) and a Relational Database Management System (RDBMS) are both systems used to manage data, but they have key differences in terms of structure, capabilities, and functionalities. Here’s a detailed comparison:
+
+DBMS (Database Management System)
+Data Storage Structure:
+
+Stores data as files.
+Data is managed in a hierarchical, network, or flat-file structure.
+Data Relationships:
+
+Relationships between data are implicit and need to be handled programmatically.
+There is no inherent support for complex relationships.
+Data Integrity:
+
+Integrity constraints are not usually enforced.
+Data integrity must be managed manually by the user or application.
+Normalization:
+
+Normalization is not usually enforced.
+Data redundancy and inconsistency can occur more frequently.
+Transactions:
+
+Limited support for transactions.
+ACID properties (Atomicity, Consistency, Isolation, Durability) may not be fully supported.
+Query Language:
+
+Typically uses simple, non-standardized query languages.
+Querying might be less flexible and more complex.
+Examples:
+
+File systems, hierarchical databases like IBM IMS.
+RDBMS (Relational Database Management System)
+Data Storage Structure:
+
+Stores data in tables (relations) which are structured rows and columns.
+Each table has a unique identifier called a primary key.
+Data Relationships:
+
+Explicitly defines relationships using foreign keys.
+Supports complex relationships and enforces referential integrity.
+Data Integrity:
+
+Strong emphasis on data integrity with built-in constraints (primary key, foreign key, unique, check, not null).
+Ensures data accuracy and consistency through integrity constraints.
+Normalization:
+
+Promotes normalization to eliminate redundancy and ensure data integrity.
+Follows normal forms to structure data efficiently.
+Transactions:
+
+Fully supports transactions with ACID properties.
+Ensures reliability and robustness of data operations.
+Query Language:
+
+Uses SQL (Structured Query Language) which is a standardized language.
+Provides powerful and flexible querying capabilities.
+Examples:
+
+MySQL, PostgreSQL, Oracle Database, Microsoft SQL Server.
+Summary
+DBMS: Suitable for smaller, simpler applications where data relationships are straightforward and integrity constraints are minimal. It offers basic functionalities without enforcing strict relational principles.
+RDBMS: Suitable for complex applications requiring robust data integrity, complex relationships, and transactions. It enforces relational principles, ensuring higher data accuracy and consistency.
+In modern applications, RDBMS is generally preferred due to its comprehensive support for data management standards and robustness in handling complex data operations.
+
+-----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
