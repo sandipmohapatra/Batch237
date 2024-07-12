@@ -146,23 +146,31 @@ create table suppliers(SupplierID INT PRIMARY KEY AUTO_INCREMENT,
 
 Wild character
 -----------------------------------------------------------------------------------
+CREATE TABLE student (
+    Id INT PRIMARY KEY ,
+    name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Phone VARCHAR(255) UNIQUE NOT NULL
+);
+--------------------------------------------------------------------------------
 select * from student where name like 's%';
+-----------------------------------------------------------------------------------
 select * from student where name like '%p';
-SELECT * FROM Customers
-WHERE CustomerName LIKE 'a%';
-SELECT * FROM Customers
-WHERE CustomerName LIKE '%a';
-SELECT * FROM Customers
-WHERE CustomerName LIKE '%or%'
-SELECT * FROM Customers
-WHERE CustomerName LIKE '_r%';
-SELECT * FROM Customers
-WHERE ContactName LIKE 'a%o';
-SELECT * FROM Customers
-WHERE CustomerName LIKE 'a__%';
-SELECT * FROM Customers
-WHERE CustomerName NOT LIKE 'a%';
--------------------------------------------------------
+---------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE 'a%';
+-------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE '%a';
+----------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE '%no%'
+-------------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE '_o%';
+-----------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE 'a%o';
+----------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name LIKE 'a__%';
+-----------------------------------------------------------------------------------------------
+SELECT * FROM student WHERE Name NOT LIKE 'a%';
+------------------------------------------------------------------------------------------------
 To create a table
 -------------------------------------------------------
 create table student2
@@ -201,6 +209,17 @@ select * from student order by name desc;
 --------------------------------------------------------------------------------
 14)group by
 select address, count(*) from student group by address;
+select address, sum(salary) from student group by address;
+select address, min(salary) from student group by address;
+select address, max(salary) from student group by address;
+select address, avg(salary) from student group by address;
+------------------------------------------------------------------------------
+In group by we use having clause
+-----------------------------------------------------
+select address, sum(salary) from student group by address having sum(salary)>75000;
+select address, avg(salary) from student group by address having avg(salary)>35000;
+select address, min(salary) from student group by address having min(salary)>35000;
+select address, max(salary) from student group by address having max(salary)>45000;
 -----------------------------------------------------------------------------------
 15)aggregate function
 count(),sum(),avg(),min(),max(),first(),last()
