@@ -1,5 +1,7 @@
 https://dev.mysql.com/downloads/installer/
-
+-------------------------------------------------------------------------------------------
+https://github.com/sandipmohapatra/MLA237JavaSM
+-------------------------------------------------------------------------------------------
 Mysql notes
 ----------------------------------------------------
 To see the databases
@@ -93,7 +95,7 @@ CREATE TABLE Books (
         CHECK (Author_Name IS NOT NULL)
 );
 
----------------------------------------------
+---------------------------------------------------------------------------------------
 CREATE TABLE Categories (
     Category_Id INT PRIMARY KEY AUTO_INCREMENT,
     Category_Name VARCHAR(255) UNIQUE NOT NULL
@@ -103,7 +105,7 @@ CREATE TABLE Publishers (
     Publisher_Id INT PRIMARY KEY AUTO_INCREMENT,
     Publisher_Name VARCHAR(255) NOT NULL
 );
--------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 CREATE TABLE Users (
     User_Id INT PRIMARY KEY ,
     Username VARCHAR(255) NOT NULL,
@@ -121,14 +123,49 @@ CREATE TABLE Borrowings (
     FOREIGN KEY (Book_Id) REFERENCES Books(Book_Id) ON DELETE CASCADE
 );
 -------------------------------------------------------------------------------------------------------
+create table customers(CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+CustomerName VARCHAR(255),	
+ContactName	VARCHAR(255),
+Address VARCHAR(255),
+City	VARCHAR(255),
+PostalCode VARCHAR(255),
+Country VARCHAR(255));
+------------------------------------------------------------------------------------------------------------
+create table orders(OrderID INT PRIMARY KEY AUTO_INCREMENT,
+CustomerID int,EmployeeID int,OrderDate date,ShipperID int);
+---------------------------------------------------------------------------------------------------------------------
+create table suppliers(SupplierID INT PRIMARY KEY AUTO_INCREMENT,
+	SupplierName VARCHAR(255),
+	ContactName	VARCHAR(255),
+	Address VARCHAR(255),
+	City VARCHAR(255),
+	PostalCode VARCHAR(255),
+	Country	VARCHAR(255),
+	Phone VARCHAR(255));
+----------------------------------------------------------------------------------------------------------------------
 
-wild character
+Wild character
+-----------------------------------------------------------------------------------
 select * from student where name like 's%';
 select * from student where name like '%p';
-
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'a%';
+SELECT * FROM Customers
+WHERE CustomerName LIKE '%a';
+SELECT * FROM Customers
+WHERE CustomerName LIKE '%or%'
+SELECT * FROM Customers
+WHERE CustomerName LIKE '_r%';
+SELECT * FROM Customers
+WHERE ContactName LIKE 'a%o';
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'a__%';
+SELECT * FROM Customers
+WHERE CustomerName NOT LIKE 'a%';
 -------------------------------------------------------
 To create a table
-5)create table student2
+-------------------------------------------------------
+create table student2
 ( studid int not null auto_increment,
 name varchar(30) not null,
 address varchar(30) not null,
@@ -140,7 +177,7 @@ insert into student values(101,'tarun','chennei');
 -----------------------------------------------------------------------------------
 7)to view the records 
 select * from student;
-------------------------------------------------------------
+-----------------------------------------------------------------------------------
 8)update the record
 update student set address='Bangalore' where name='tarun';
 --------------------------------------------------------------------------
@@ -456,6 +493,67 @@ ON Persons (LastName, FirstName);
 ALTER TABLE table_name
 DROP INDEX index_name;
 ----------------------------------------------------------------
+SELECT COUNT(DISTINCT Country) FROM Customers;
+----------------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country='India' AND City='Japan';
+-------------------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE City='India' OR City='Japan';
+--------------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE NOT Country='India';
+-------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country='India' AND (City='Japan' OR City='China');
+------------------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE NOT Country='India' AND NOT Country='Japan';
+--------------------------------------------------------------------------------------------------
+SELECT CustomerName, ContactName, Address
+FROM Customers
+WHERE Address IS NULL;
+-----------------------------------------------------------------------------------------------
+SELECT CustomerName, ContactName, Address
+FROM Customers
+WHERE Address IS NOT NULL;
+-------------------------------------------------------------------------------------
+SELECT * FROM Customers LIMIT 3;
+---------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country='India'
+LIMIT 3;
+---------------------------------------------------------------------------
+SELECT MIN(Price) AS SmallestPrice
+FROM Products; 
+-----------------------------------------------------------------
+SELECT MAX(Price) AS LargestPrice
+FROM Products;
+------------------------------------------------------------------
+SELECT COUNT(ProductID)
+FROM Products;
+------------------------------------------------------------------
+SELECT AVG(Price)
+FROM Products;
+------------------------------------------------------
+SELECT SUM(Quantity)
+FROM OrderDetails;
+-----------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country IN ('India', 'Japan', 'China');
+------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country NOT IN ('India', 'Japan', 'China');
+--------------------------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE Country IN (SELECT Country FROM Suppliers);
+------------------------------------------------------------------------------------------------
+SELECT * FROM Products
+WHERE Price BETWEEN 10 AND 20;
+------------------------------------------------------------------------------
+SELECT * FROM Products
+WHERE Price NOT BETWEEN 10 AND 20;
+---------------------------------------------------------------------------------
 
 
 ------------------------------End Of MySql-----------------------------------
