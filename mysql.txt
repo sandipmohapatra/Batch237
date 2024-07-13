@@ -1346,5 +1346,46 @@ ans)all of the above
 ans :(true)
 ------------------------------------------------------------------
 16)select min/max date(DOB) from mphasisemp;(true)
+---------------------------------------------------------------------------------
+SQL ________ statements may not change the contents of a database
+Result set meta data are retrieved through ____________
+Invoking Class.forName method may throw ___________
+You can store images in a database using data type _______
+In a scrollable and updateable result set, you can use ___________ methods on a result set
+________ is an attribute or a set of attributes that uniquely identifies the relation.
+Which subset of sql commands used to manipulate database structures including tables
+Which better performs pattern matching?
+Which operator tests column for absence of data?
+Which command is used to change a tables storage characteristics?
+Which of the following is not a DDL command?
+Which command is used to select only one copy of each set of duplicable rows?
+A command to change one or more fields in a record is
+Which of the following is correct SQL statement?
+The from SQL clause is used to?
+which SQLkeyword is used to retrieve only unique values?
+Which SQL keyword is sued to retrive a maximum value
+What is a view?
+Which SQL command is used to retrieve data
+Which of the following is an SQL aggregate function?
+Which SQL statement is used to update data in a database
+Which SQL statement is used to delete from a database
+"Table employee has 10 records. It has a non-NULL SALARY column which is also UNIQUE.
+The SQL statement
+SELECT COUNT(*) FROM employee WHERE SALARY > ALL (SELECT SALARY FROM EMPLOYEE);
+prints"
+Which of the following SQL commands can be used to add data to a database table?
+Which of the following join is also called as an 'inner-join'?
+Which of the following is NOT a type of SQL constraint?
+What is an SQL virtual table that is constructed from other tables?
+When using the SQL INSERT statement:
+The SQL ALTER statement can be used to:
+What SQL command can be used to delete columns from a table?
+What SQL command can be used to add columns to a table?
+The command to remove rows from a table 'CUSTOMER' is:
+Which of the following is the original purpose of SQL?
+The wildcard in a WHERE clause is useful when?
+The command to eliminate a table from a database is:
+The SQL keyword(s) ________ is used with wildcards.
+A subquery in an SQL SELECT statement is enclosed in:
 
 
