@@ -1052,15 +1052,15 @@ stored function in MYSql
 function -1
 ----------------------
 DELIMITER $$
-CREATE FUNCTION add_numbers1(a INT, b INT)
+CREATE FUNCTION avg_numbers(a INT default 10, b INT, c INT)
 RETURNS INT
 DETERMINISTIC  
 BEGIN
-    RETURN a + b;
+    RETURN (a + b + c)/3;
 END 
 $$ DELIMITER;
 ---------------------------------------------------------------
-SELECT add_numbers1(10,5) AS sum;
+SELECT avg_numbers(10,5,7) AS average;
 -----------------------------------------------------------------
 DROP FUNCTION IF EXISTS add_numbers;
 -------------------------------------------------------------------
@@ -1096,9 +1096,7 @@ SELECT factorial(5) AS fact;
 function 3
 --------------------------
 DELIMITER $$  
-CREATE FUNCTION Customer_Occupation(  
-    age INT  
-)   
+CREATE FUNCTION Customer_Occupation(age INT)   
 RETURNS VARCHAR(20)  
 DETERMINISTIC  
 BEGIN  
@@ -1120,6 +1118,20 @@ DROP TABLE customer;
 ----------------------------------------------------
 select Customer_Occupation(35);
 ----------------------------------------------------
+function-4
+-----------------------------------------------------
+DELIMITER $$
+CREATE FUNCTION add_numbers1(a INT, b INT)
+RETURNS INT
+DETERMINISTIC  
+BEGIN
+    RETURN a + b;
+END 
+$$ DELIMITER;
+------------------------------------------------------------
+
+SELECT add_numbers1(10,5) AS SUM;
+------------------------------------------------------------
 
 
 
