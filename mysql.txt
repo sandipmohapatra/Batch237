@@ -1049,19 +1049,31 @@ example:-
 ------------------------------------------------------------------------------------
 stored function in MYSql
 ----------------------------------------
+function -1
+----------------------
 DELIMITER $$
-CREATE FUNCTION add_numbers(a INT, b INT)
+CREATE FUNCTION add_numbers1(a INT, b INT)
 RETURNS INT
 DETERMINISTIC  
 BEGIN
     RETURN a + b;
-END $$
-DELIMITER;
+END 
+$$ DELIMITER;
 ---------------------------------------------------------------
-SELECT add_numbers(10,5) AS sum;
+SELECT add_numbers1(10,5) AS sum;
 -----------------------------------------------------------------
 DROP FUNCTION IF EXISTS add_numbers;
 -------------------------------------------------------------------
+DELIMITER // changes the statement delimiter to
+ // to allow the use of semicolons within the function body.
+CREATE FUNCTION add_numbers defines the function name and parameters.
+RETURNS INT specifies the return type of the function.
+The BEGIN ... END block contains the SQL statements for the function.
+DELIMITER ; resets the statement delimiter back to ;.
+The DETERMINISTIC keyword indicates that the function always produces the same result for the same input parameters.
+-------------------------------------------------------------------------------------------
+Function-2
+----------------------
 DELIMITER $$
 CREATE FUNCTION factorial(n INT)
 RETURNS INT
@@ -1076,14 +1088,16 @@ BEGIN
     END WHILE;
 
     RETURN result;
-END $$
-DELIMITER ;
------------------------------------------------
+END
+$$ DELIMITER ;
+---------------------------------------------------------
 SELECT factorial(5) AS fact;
 --------------------------------------------------------
+function 3
+--------------------------
 DELIMITER $$  
 CREATE FUNCTION Customer_Occupation(  
-    age int  
+    age INT  
 )   
 RETURNS VARCHAR(20)  
 DETERMINISTIC  
@@ -1099,19 +1113,13 @@ BEGIN
     END IF;  
     -- return the customer occupation  
     RETURN (customer_occupation);  
-END$$  
-DELIMITER;  
------------------------------------------------------------------------------
-cust_id int,name varchar(50),occupation varchar(30),age int;
---------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
+END
+$$  DELIMITER;  
+------------------------------------------------------------
+DROP TABLE customer;
+----------------------------------------------------
+select Customer_Occupation(35);
+----------------------------------------------------
 
 
 
