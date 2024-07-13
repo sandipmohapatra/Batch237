@@ -282,8 +282,7 @@ CREATE TABLE mphasisstudents
 NAME VARCHAR(30) NOT NULL,
 address VARCHAR(30) NOT NULL,
 location VARCHAR(30) NOT NULL,
-PRIMARY KEY(studid,NAME)
-);
+PRIMARY KEY(studid,NAME));
 
 ----------------------------------------------------------------------------------------
 CREATE TABLE mphasisstudent
@@ -291,8 +290,7 @@ CREATE TABLE mphasisstudent
 NAME VARCHAR(30) DEFAULT NULL UNIQUE,
 address VARCHAR(30) DEFAULT NULL,
 location VARCHAR(30) DEFAULT NULL,
-PRIMARY KEY(studid,NAME)
-);
+PRIMARY KEY(studid,NAME));
 -------------------------------------------------------------------------------------
 clone as table
 ------------------------
@@ -333,8 +331,7 @@ CREATE TABLE Persons3 (
     LastName varchar(255) NOT NULL,
     FirstName varchar(255),
     Age int,
-    CONSTRAINT mphasis_emp UNIQUE (ID,LastName)
-);
+    CONSTRAINT mphasis_emp UNIQUE (ID,LastName));
 ---------------------------------------------------------
 101,'kumar'
 101,'kumar'
@@ -351,16 +348,14 @@ CREATE TABLE Persons (
     LastName varchar(255) NOT NULL,
     FirstName varchar(255),
     Age int,
-    PRIMARY KEY (ID)
-);
+    PRIMARY KEY (ID));
 --------------------------------------------------------------------------
 CREATE TABLE Persons (
     ID int NOT NULL,
     LastName varchar(255) NOT NULL,
     FirstName varchar(255),
     Age int,
-    CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
-);
+    CONSTRAINT PK_Person PRIMARY KEY (ID,LastName));
 -----------------------------------------------------------------------------
 ALTER TABLE Persons
 ADD PRIMARY KEY (ID);
@@ -962,12 +957,153 @@ RDBMS: Suitable for complex applications requiring robust data integrity, comple
 In modern applications, RDBMS is generally preferred due to its comprehensive support for data management standards and robustness in handling complex data operations.
 
 -----------------------------------------------------------------------------------
+views---------------
+subqueries---------------------
+self join, non-equi join , cross------------
+function----------------
+procedure------------
+transaction-----rollback and commit;
+-------------------------------------------------------
+operations
+----------------------
+1)TL (Transaction language) :- select
+
+2)DML (data manipulation language) :- insert ,update, delete
+They are temporary.if we rollback it will come to the previous state.
+
+3)DCL (data control language):- grant, revoke
+
+4)DDL (data defination language):- create, alter, drop
+
+5)TCL (Transaction control language)  :- commit, rollback ,savepoint. 
+
+-----------------------------------------------------------------------------------------------
+view 
+----------
+A view is a logical table based on a table or another view.
+
+if we delete/insert/update a data from the view it will reflect the base table.
+
+the main purpose of view is to store bigger query. The view actually stores query and does not occupies any memory space.
+
+view can be used to make simple queries to retrieve the result of complicated queries.
+
+one view can be used to retrieve data from several tables (join).
+
+we can create a view on another view.
+
+if you drop the base table or base view the corresponding view will be automatically deleted.
+
+view created on a single table is called simple view we can do DML operations.
+
+view created on a multiple tables is called complex view we cannot  do DML operations.
+
+----------------------------------------------------------------------------------
+Index:- It is used to retrieve data from a table faster during search operation.
+
+If the data is sorted then the retrieval will be faster. Other wise full table scan will happen.
+
+In case of dictionary if words are not arranged in alphabetic order we have to search the whole dictionary .
+
+we have 2 types of index.
+1)unique index:- when we define a column with primary key or unique key constraint oracle will automatically create a index on the column .Internally it will sort the data and keep so retrieval will be faster.
+
+2)non unique index:- if you donot define a column as PK or unique key then we have to create a index on the table explicitly.
+
+example :- foreign key column are not index.
+
+create index xyz1 on mphasisemp(name);
+-------------------------------------------------------------------------------------
+self join
+------------------
+create table customer237 (CustomerID int,CustomerName varchar(30),ContactName varchar(30),Address varchar(30),City varchar(30),PostalCode int,Country varchar(30));
+
+insert into customer237 values(101,'Anusha','Darshan','MG Road','Bangalore',080,'India');
+insert into customer237 values(102,'swamy','Darshan','MG Road','Bangalore',080,'India');
+insert into customer237 values(103,'sandip','Darshan','MG Road','Bangalore',080,'India');
 
 
+SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
+FROM Customer237 A, Customer237 B
+WHERE A.CustomerID <> B.CustomerID
+AND A.City = B.City
+ORDER BY A.City;
+------------------------------------------------------------------------------------------------------
+select empno,ename,sal from emp where sal = any(1500,3000);
+select empno,ename,sal from emp where sal>1500 or sal>3000;
+select empno,ename,sal from emp where sal >1600 AND sal<3000;
+------------------------------------------------------------------------------------------
+subquery :-
+-----------------
+A subquery is a select statement that is embedded in a cluse of another select statement.
 
+example:-
+1) select ename from emp where sal>(select sal from emp where name='amit');
 
+2)UPDATE hystud4
+   SET SALARY = salary + SALARY * 0.25
+   WHERE AGE IN (SELECT AGE FROM hystud4 WHERE AGE >= 27 );
 
+3)DELETE FROM CUSTOMERS
+   WHERE AGE IN (SELECT AGE FROM CUSTOMERS WHERE AGE >= 27 );
+------------------------------------------------------------------------------------
+stored function in MYSql
+----------------------------------------
+DELIMITER $$
+CREATE FUNCTION add_numbers(a INT, b INT)
+RETURNS INT
+DETERMINISTIC  
+BEGIN
+    RETURN a + b;
+END $$
+DELIMITER;
+---------------------------------------------------------------
+SELECT add_numbers(10,5) AS sum;
+-----------------------------------------------------------------
+DROP FUNCTION IF EXISTS add_numbers;
+-------------------------------------------------------------------
+DELIMITER $$
+CREATE FUNCTION factorial(n INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE result INT DEFAULT 1;
+    DECLARE i INT DEFAULT 1;
 
+    WHILE i <= n DO
+        SET result = result * i;
+        SET i = i + 1;
+    END WHILE;
+
+    RETURN result;
+END $$
+DELIMITER ;
+-----------------------------------------------
+SELECT factorial(5) AS fact;
+--------------------------------------------------------
+DELIMITER $$  
+CREATE FUNCTION Customer_Occupation(  
+    age int  
+)   
+RETURNS VARCHAR(20)  
+DETERMINISTIC  
+BEGIN  
+    DECLARE customer_occupation VARCHAR(20);  
+    IF age > 35 THEN  
+        SET customer_occupation = 'Scientist';  
+    ELSEIF (age <= 35 AND   
+            age >= 30) THEN  
+        SET customer_occupation = 'Engineer';  
+    ELSEIF age < 30 THEN  
+        SET customer_occupation = 'Actor';  
+    END IF;  
+    -- return the customer occupation  
+    RETURN (customer_occupation);  
+END$$  
+DELIMITER;  
+-----------------------------------------------------------------------------
+cust_id int,name varchar(50),occupation varchar(30),age int;
+--------------------------------------------------------------------------------------
 
 
 
