@@ -981,32 +981,29 @@ They are temporary.if we rollback it will come to the previous state.
 view 
 ----------
 A view is a logical table based on a table or another view.
-
 if we delete/insert/update a data from the view it will reflect the base table.
-
-the main purpose of view is to store bigger query. The view actually stores query and does not occupies any memory space.
-
+The main purpose of view is to store bigger query. The view actually stores query and does not occupies any memory space.
 view can be used to make simple queries to retrieve the result of complicated queries.
-
 one view can be used to retrieve data from several tables (join).
-
 we can create a view on another view.
-
 if you drop the base table or base view the corresponding view will be automatically deleted.
-
 view created on a single table is called simple view we can do DML operations.
-
 view created on a multiple tables is called complex view we cannot  do DML operations.
-
-----------------------------------------------------------------------------------
+example:-
+CREATE VIEW abc AS SELECT customerid,customername,address,
+country FROM customer237;
+--------------------------------------------------------------------------------------
+SELECT * FROM abc;
+SELECT * FROM customer237;
+-----------------------------------------------------------------------------------------
+INSERT INTO abc VALUES(104,'Pavan','Kengari','India');
+------------------------------------------------------------------------------------------
 Index:- It is used to retrieve data from a table faster during search operation.
-
 If the data is sorted then the retrieval will be faster. Other wise full table scan will happen.
-
 In case of dictionary if words are not arranged in alphabetic order we have to search the whole dictionary .
-
+-----------------------------------------------------------------
 we have 2 types of index.
-1)unique index:- when we define a column with primary key or unique key constraint oracle will automatically create a index on the column .Internally it will sort the data and keep so retrieval will be faster.
+1)unique index:- when we define a column with primary key or unique key constraint oracle/mysql will automatically create a index on the column .Internally it will sort the data and keep so retrieval will be faster.
 
 2)non unique index:- if you donot define a column as PK or unique key then we have to create a index on the table explicitly.
 
@@ -1047,7 +1044,7 @@ example:-
 3)DELETE FROM CUSTOMERS
    WHERE AGE IN (SELECT AGE FROM CUSTOMERS WHERE AGE >= 27 );
 ------------------------------------------------------------------------------------
-stored function in MYSql
+Stored function in MYSql
 ----------------------------------------
 function -1
 ----------------------
@@ -1132,7 +1129,83 @@ $$ DELIMITER;
 
 SELECT add_numbers1(10,5) AS SUM;
 ------------------------------------------------------------
+Correlated subqueries
+------------------------------------------
+Correlated subqueries in MySQL are subqueries that depend on the outer query for their values. This means the subquery is executed once for each row processed by the outer query. 
+
+In a correlated subquery, the inner query references a column from the outer query. The subquery is evaluated once for each row in the outer query. This allows you to perform row-by-row processing, making it possible to write more complex queries that compare each row in a table with some aggregated data.
+
+Example
+we have two tables: employees and departments.
+
+CREATE TABLE employees (
+    id INT,
+    name VARCHAR(100),
+    department_id INT,
+    salary DECIMAL(10, 2)
+);
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE departments (
+    id INT,
+    name VARCHAR(100)
+);
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+To find the employees who earn more than the average salary in their department, you can use a correlated subquery:
+
+SELECT name
+FROM employees e
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees
+    WHERE department_id = e.department_id
+);
+----------------------------------------------------------------------------------------------------------------------------------------------
+Non-correlated subqueries
+------------------------------------
+Non-correlated subqueries, also known as simple subqueries, are subqueries that are independent of the outer query. They are executed only once and return a value or a set of values that can be used by the outer query. Unlike correlated subqueries, non-correlated subqueries do not reference columns from the outer query.
 
 
+Non-correlated subqueries can be used in various clauses like SELECT, FROM, WHERE, and HAVING. They are typically used to return a single value or a list of values that the outer query can use for comparison or further processing.
 
+CREATE TABLE employees (
+    id INT,
+    name VARCHAR(100),
+    department_id INT,
+    salary DECIMAL(10, 2)
+);
+
+CREATE TABLE departments (
+    id INT,
+    name VARCHAR(100)
+);
+
+Example 1: Subquery in the WHERE Clause
+To find employees who work in the 'Sales' department, you can use a non-correlated subquery:
+
+SELECT name
+FROM employees
+WHERE department_id = (
+    SELECT id
+    FROM departments
+    WHERE name = 'Sales'
+);
+
+
+Subquery: SELECT id FROM departments WHERE name = 'Sales'
+
+This subquery retrieves the id of the 'Sales' department.
+It is executed only once.
+---------------------------------------------------------------------------------------------------------------------------------------------
+Example 2: Subquery in the SELECT Clause
+To get the average salary of all employees along with each employee's details:
+
+SELECT name, salary, 
+    (SELECT AVG(salary) FROM employees) AS avg_salary
+FROM employees;
+
+Subquery: SELECT AVG(salary) FROM employees
+
+This subquery calculates the average salary of all employees.
+It is executed only once.
+---------------------------------------------------------------------------------------------------------------------------------------------
 
