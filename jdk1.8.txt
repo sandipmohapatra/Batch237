@@ -114,6 +114,25 @@ System.out.println("the sum is "+sum);
 System.out.println("the average is "+avg);
 }
 }
+-------------------------------------------------------------------
+//wap to enter 2 numbers and find the greatest.
+package tuesday;
+import java.lang.*; //default package
+import java.util.*;
+public class Example1 
+{
+	public static void main(String[] args) 
+	{
+		Scanner ob=new Scanner(System.in);
+		System.out.println("Enter 2 no");
+		int a=ob.nextInt();
+		int b=ob.nextInt();
+		if(a>b)
+			System.out.println("the greatest is "+a);
+		else
+			System.out.println("the greatest is "+b);
+	}
+}
 
 ----------------------------------------------------------------
 Class :- A class is a known as object framework.
