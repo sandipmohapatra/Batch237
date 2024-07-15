@@ -1247,3 +1247,34 @@ DELIMITER ;
 CALL get_student(1);  
 * only one student's details will be seen
 -------------------------------------------------------------------------------------------
+example-3
+----------------------
+DELIMITER &&  
+CREATE PROCEDURE display_max_mark (OUT highestmark INT)  
+BEGIN  
+    SELECT MAX(marks) INTO highestmark FROM student_info;   
+END &&  
+DELIMITER ;  
+--------------------------------------------------------------------------------------------------
+
+CALL display_max_mark(@M);  
+------------------------------------------------------------------------------
+ SELECT @M;  
+-------------------------------------------------------------------------------
+example-4
+------------------
+DROP PROCEDURE display_marks
+---------------------------------------------------------------------------
+DELIMITER &&  
+CREATE PROCEDURE display_marks (INOUT var1 INT)  
+BEGIN  
+    SELECT marks INTO var1 FROM student_info WHERE rollno = var1;   
+END &&  
+DELIMITER ;  
+--------------------------------------------------------------------------------------------
+SET @M = 101;  
+--------------------------------------
+CALL display_marks(@M);  
+---------------------------------------
+SELECT @M; 
+-----------------------------------------------------------------------------------
