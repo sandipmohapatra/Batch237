@@ -298,12 +298,80 @@ public static void main(String[] args) {
 	obj.display();
 }
 }
+---------------------------------------------------------------------------------------------------
+example-5
+-------------------
+//wap to create a book class having book_id,book_name,author,price
+package tuesday;
+class Book
+{
+	 int book_id;
+	 String book_name;
+	 String author;
+	 float price;
+	public int getBook_id() {
+		return book_id;
+	}
+	public void setBook_id(int book_id) {
+		this.book_id = book_id;
+	}
+	public String getBook_name() {
+		return book_name;
+	}
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	public Book(int book_id, String book_name, String author, float price) {
+		super();
+		this.book_id = book_id;
+		this.book_name = book_name;
+		this.author = author;
+		this.price = price;
+		System.out.println(book_id+" "+book_name+" "+author+" "+price);
+	}
+	public Book() {
+		System.out.println("default constructor");
+	}
+	
+	 
+}
+-----------------------------------------------------------------------------------
+package tuesday;
+
+public class BookAccess 
+{
+public static void main(String[] args) {
+	
+	Book obj=new Book();
+	obj.setBook_id(101);
+	obj.setBook_name("Complete Java");
+	obj.setAuthor("Sandip");
+	obj.setPrice(20.35f);
+	System.out.println("the book id is "+obj.getBook_id());
+	System.out.println("the book name is "+obj.getBook_name());
+	System.out.println("the book author is "+obj.getAuthor());
+	System.out.println("the book price is "+obj.getPrice());
+	Book obj1=new Book(102,"Python","Kiran",25.35f);
+}
+}
 
 ----------------------------------------------------------------------------------------------------
 //wap to create a Bank class having accno, name and balance .
 //customer can do withdraw or deposite and then see the final balance.
 //minimum balance is 1000.
-------------------------------------------- 
+----------------------------------------------------------------------------------------------------------- 
 package Day1;
 import java.util.*;
 public class Bank 
