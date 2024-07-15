@@ -92,6 +92,28 @@ System.out.println("the sum is "+sum);
 System.out.println("the average is "+avg);
 }
 }
+-----------------------------------------------------------
+//wap to enter 5 numbers and find the sum and average.
+package tuesday;
+import java.lang.*; //default package
+import java.util.*;
+public class Example1 
+{
+public static void main(String[] args) 
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("Enter 5 no");
+int a=ob.nextInt();
+int b=ob.nextInt();
+int c=ob.nextInt();
+int d=ob.nextInt();
+int e=ob.nextInt();
+int sum=a+b+c+d+e;
+int avg=sum/5;
+System.out.println("the sum is "+sum);
+System.out.println("the average is "+avg);
+}
+}
 
 ----------------------------------------------------------------
 Class :- A class is a known as object framework.
