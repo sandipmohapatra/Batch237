@@ -151,19 +151,47 @@ public class Example1
 			}
 }
 
-----------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
 Class :- A class is a known as object framework.
 A class contains variables and methods.
----------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
 Object is a reference pointer to the class.
 We can access the variables and methods of a class using Object.
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
 Assignment-1
 -------------------
 wap to enter employee's data and display it.
 empno, name, address, dept, salary.
 ----------------------------------------------------------------------
-
+package tuesday;
+import java.util.*;
+public class Student 
+{
+int rollno;
+String name,address;
+void input()
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("Enter rollno,name,address");
+	rollno=ob.nextInt();
+	name=ob.next();
+	address=ob.next();
+}
+void display()
+{
+	System.out.println("the rollno is "+rollno);
+	System.out.println("the name is "+name);
+	System.out.println("the address is "+address);
+	}
+public static void main(String[] args)
+{
+	Student ob1=new Student();
+	ob1.input();
+	ob1.display();
+	System.out.println("the rollno is "+ob1.rollno);
+}
+}
+-------------------------------------------------------------------------------------------------
 program-3
 ---------------------
 package monday;
