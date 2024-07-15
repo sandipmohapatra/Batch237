@@ -36,6 +36,8 @@ i)arithmatic :- +,-,*,/,%(modules)
 ii)comparative :- <,>,<=,>=
 iii)assignment :- =,!=
 iv)bitwise :- >>,<<
+v)logical:-or, and
+
 3)ternary :- :,?
 --------------------------------------
 we have 4 access specifier private, public, protected, default.
@@ -78,6 +80,19 @@ System.out.println(d+" "+e+" "+f);
 System.out.println(g+" "+h);
 }
 }
+--------------------------------------------------------------------
+public class Example1 
+{
+public static void main(String[] args) 
+{
+int a=10,b=20,c=30,d=40,e=50;
+int sum=a+b+c+d+e;
+int avg=sum/5;
+System.out.println("the sum is "+sum);
+System.out.println("the average is "+avg);
+}
+}
+
 ----------------------------------------------------------------
 Class :- A class is a known as object framework.
 A class contains variables and methods.
