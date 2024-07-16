@@ -278,18 +278,33 @@ public class PowerCalculation {
 }
 ---------------------------------------------------------------------------------------------------------------------------------------
 package tuesday;
-public class Main {
-    public static void main(String[] args) {
-         double real1 = 2.4;
-        double imaginary1 = 4.5;
+public class ComplexNumberAddition 
+{
+    public static void main(String[] args) 
+    {
+        double real1 = 3.5;
+        double imaginary1 = 2.5;
 
-        double real2 = 3.4;
-        double imaginary2 = 5.6;
+        double real2 = 1.5;
+        double imaginary2 = 4.5;
 
-        double realSum = real1 + real2;
-        double imaginarySum = imaginary1 + imaginary2;
+         double sumReal;
+        double sumImaginary;
 
-        System.out.println("The sum of " + real1 + " + " + imaginary1 + "i and " + real2 + " + " + imaginary2 + "i is " + realSum + " + " + imaginarySum + "i");
+             if (real1 + real2 != 0) {
+            sumReal = real1 + real2;
+        } else {
+            sumReal = 0;
+        }
+
+              if (imaginary1 + imaginary2 != 0) {
+            sumImaginary = imaginary1 + imaginary2;
+        } else {
+            sumImaginary = 0;
+        }
+
+                System.out.println("The sum of (" + real1 + " + " + imaginary1 + "i) and (" 
+            + real2 + " + " + imaginary2 + "i) is (" + sumReal + " + " + sumImaginary + "i)");
     }
 }
 ----------------------------------------------------------------------------------------------------------------------------------
