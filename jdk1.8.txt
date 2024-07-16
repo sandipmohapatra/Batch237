@@ -278,35 +278,18 @@ public class PowerCalculation {
 }
 ---------------------------------------------------------------------------------------------------------------------------------------
 package tuesday;
-class ComplexNumber 
-{
-    double real;
-    double imaginary;
-
-       public ComplexNumber(double real, double imaginary) 
-       {
-        this.real = real;
-        this.imaginary = imaginary;
-    }
-
-    public ComplexNumber add(ComplexNumber other) 
-    {
-        double newReal = this.real + other.real;
-        double newImaginary = this.imaginary + other.imaginary;
-        return new ComplexNumber(newReal, newImaginary);
-    }
-
-      @Override
-    public String toString() {
-        return real + " + " + imaginary + "i";
-    }
-}
 public class Main {
     public static void main(String[] args) {
-        ComplexNumber num1 = new ComplexNumber(2.4, 4.5);
-        ComplexNumber num2 = new ComplexNumber(3.4, 5.6);
-        ComplexNumber result = num1.add(num2);
-        System.out.println("The sum of " + num1 + " and " + num2 + " is " + result);
+         double real1 = 2.4;
+        double imaginary1 = 4.5;
+
+        double real2 = 3.4;
+        double imaginary2 = 5.6;
+
+        double realSum = real1 + real2;
+        double imaginarySum = imaginary1 + imaginary2;
+
+        System.out.println("The sum of " + real1 + " + " + imaginary1 + "i and " + real2 + " + " + imaginary2 + "i is " + realSum + " + " + imaginarySum + "i");
     }
 }
 ----------------------------------------------------------------------------------------------------------------------------------
