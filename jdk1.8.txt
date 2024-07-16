@@ -560,6 +560,47 @@ There are 2 types of constructor
 2)parameterized constructor :- it is with parameter.
 To access a constructor we require an object.
 -----------------------------------------------------
+package tuesday;
+
+public class ConstructorDemo 
+{
+int rollno;  //global variables
+String name,address;
+public ConstructorDemo(int rollno, String name, String address) //local variables
+{
+	this.rollno = rollno;
+	this.name = name;
+	this.address = address;
+	System.out.println("the rollno is"+rollno+"The name is "+name+"The address is "+address);
+}
+public ConstructorDemo()
+{
+System.out.println("Default constructor");	
+}
+int sum(int a,int b) //function/method overloading or compile time poly-merphisim
+{
+	return a+b;
+}
+float sum(float a,float b)
+{
+	return a+b;
+}
+int sum(int a,int b,int c)
+{
+	return a+b+c;
+}
+public static void main(String[] args) 
+{
+	ConstructorDemo  ob=new ConstructorDemo();
+	ConstructorDemo  ob1=new ConstructorDemo();
+	ConstructorDemo  ob2=new ConstructorDemo(101,"sandip","bangalore");
+	ConstructorDemo  ob3=new ConstructorDemo(102,"Kiran","Pune");
+	System.out.println("The sum is "+ob.sum(5, 6));
+	System.out.println("The sum is "+ob.sum(5.4f, 6.3f));
+	System.out.println("The sum is "+ob.sum(5, 6,7));
+	}
+}
+---------------------------------------------------------------------------
 program-5
 --------------------
 package monday;
