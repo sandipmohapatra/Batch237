@@ -842,6 +842,29 @@ for(int i=0;i<5;i++)
 	System.out.println(a[i]);
 }
 }
+-----------------------------------------------------------
+package tuesday;
+import java.util.*;
+public class ArrayDemo
+{
+	public static void main(String[] args) 
+	{
+		float a[]=new float[5];
+		float sum=0.0f;
+		Scanner ob=new Scanner(System.in);
+
+		System.out.println("enter 5 decimal nos");
+		for(int i=0;i<5;i++)
+			a[i]=ob.nextFloat();
+
+		System.out.println(" 5 decimal nos sum is");
+		for(int i=0;i<5;i++)
+		{
+			sum=sum+a[i];
+		}
+		System.out.println(sum);
+	}
+}
 ----------------------------------------------------------
 package Saturday;
 import java.util.*;
