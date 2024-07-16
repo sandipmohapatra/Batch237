@@ -150,6 +150,49 @@ public class Example1
 			System.out.println("the number is -ve");
 			}
 }
+---------------------------------------------------------------------------
+package tuesday;
+import java.util.*;
+public class CaseDemo 
+{
+	public static void main(String[] args) 
+	{
+		int x,y;
+		Scanner ob=new Scanner(System.in);
+		System.out.println("enter your choice");
+		System.out.println("1.Addition");
+		System.out.println("2.Subtraction");
+		System.out.println("3.Multiplication");
+		System.out.println("4.Division");
+		int choice=ob.nextInt();
+		switch(choice)
+		{
+		case 1:System.out.println("enter 2 nos");
+		x=ob.nextInt();
+		y=ob.nextInt();
+		System.out.println("the sum is "+(x+y));
+		break;
+		case 2:System.out.println("enter 2 nos");
+		x=ob.nextInt();
+		y=ob.nextInt();
+		System.out.println("the sub is "+(x-y));
+		break;
+		case 3:System.out.println("enter 2 nos");
+		x=ob.nextInt();
+		y=ob.nextInt();
+		System.out.println("the sum is "+(x*y));
+		break;
+		case 4:System.out.println("enter 2 nos");
+		x=ob.nextInt();
+		y=ob.nextInt();
+		System.out.println("the sum is "+(x/y));
+		break;
+		default:System.out.println("Enter valid number");
+		}
+
+	}
+}
+
 
 -----------------------------------------------------------------------------------------------------
 Class :- A class is a known as object framework.
