@@ -1,0 +1,33 @@
+1)github link local repository to remote---->git remote add origin <remote_repo_URL>
+2)which language doesnot support OOP's concept----->C
+3)which has the largest bit size char, varchar, text data ,char and varchar ----> TEXT can store the largest amount of data, up to 65,535 bytes.
+4)order of normalization---1NF,2NF,3NF,BCNF,4NF,5NF
+5)When will frontend and backend developers both involved in SDLC------development phase
+6)what are Prototype models :- Throwaway/Rapid Prototypes,Evolutionary Prototypes,Incremental Prototypes,Extreme Prototyping
+7)In flowcharts, when you need to indicate that the same process symbol is connected or referenced on the same page, you typically use connectors.----------->On-Page Connectors
+8)what is the core purpose of Normalization---------->Minimizes Redundancy,Reduces Update Anomalies,Improves Data Integrity
+9)what is advantage of proper planning in SDLC---->Clarity of Objectives and Scope,Risk Management,Resource Allocation and Management,Timeline and Milestone Definition,Quality Assurance and Testing Strategy,Stakeholder Engagement and Communication,Cost Management,Adaptability and Flexibility
+10)which is not a best practice of Pseudocode ---- 
+11)what is the structure of computer program?
+"Sequence"; ordered statements or subroutines executed in sequence. 
+"Selection"; one or a number of statements is executed depending on the state of the program.
+12)what is the relation of deptno --->Foreign key
+13)To unstage a file in Git while preserving its changes (i.e., keeping the modifications intact but removing them from the staging area), you can use the following command-----> git reset HEAD <file>
+14)entity is a a real-world object, person, or concept that can be represented in a database and have data stored about it 
+15)which git command creates an empty repository in his specified directory-----The git init command creates a new Git repository
+16)The .git directory is a hidden directory that is automatically created when you initialize a new repository using Git. It serves as the backbone of your Git repository, storing all the metadata and object database for your project. 
+17)OOP's advantages ----reusability, easy to debug, easy to test.
+18)"%jim%"
+19)row having null values
+20)create a query using select where  from order by and alias
+SELECT     customer_id AS id,
+    CONCAT(first_name, ' ', last_name) AS full_name,
+    email,    order_date,    total_amount FROM 
+    orders WHERE     order_status = 'completed'
+ORDER BY order_date DESC;
+21)all the Collage from the region and one university :- 1:M
+22)
+
+
+
+
