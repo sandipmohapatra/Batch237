@@ -308,6 +308,34 @@ public class ComplexNumberAddition
     }
 }
 ----------------------------------------------------------------------------------------------------------------------------------
+package tuesday;
+import java.util.Scanner;
+
+public class LCMCalculator {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the first number: ");
+        int num1 = scanner.nextInt();
+
+        System.out.print("Enter the second number: ");
+        int num2 = scanner.nextInt();
+
+        int gcd = 1; // Initial value for GCD
+
+              for (int i = 1; i <= num1 && i <= num2; i++) {
+            if (num1 % i == 0 && num2 % i == 0) {
+                gcd = i;
+            }
+        }
+
+             int lcm = (num1 * num2) / gcd;
+
+        System.out.println("The LCM of " + num1 + " and " + num2 + " is: " + lcm);
+    }
+}
+---------------------------------------------------------------------------------------------------------------------
 Class :- A class is a known as object framework.
 A class contains variables and methods.
 -------------------------------------------------------------------------------------------------------
@@ -1080,6 +1108,75 @@ public static void main(String[] args) {
 }
 }
 --------------------------------------------------------------------------------------------
+Multi-level Inheritance
+--------------------------------------
+package Wednesday;
+
+public class Student {
+
+	int rollno;
+	String name,address;
+	public Student(int rollno, String name, String address) 
+	{
+		this.rollno = rollno;
+		this.name = name;
+		this.address = address;
+	}
+	void display()
+	{
+		System.out.println("the rollno is "+rollno+"The name is "+name+"The address is "+address);
+	}
+	}
+------------------------------------------------------------------------
+package Wednesday;
+public class Marks extends Student
+{
+float phy,chem,maths;
+
+public Marks(int rollno, String name, String address, float phy, float chem, float maths) 
+{
+	super(rollno, name, address);//parent class constructor will execute first then the child 	class constructor
+	this.phy = phy;
+	this.chem = chem;
+	this.maths = maths;
+}
+
+void display()
+{
+	super.display();
+	System.out.println("the physics marks is "+phy+"The chemistry marks is "+chem+"The maths marks is"+maths);
+	float total=phy+chem+maths;
+	float avg=total/3;
+	System.out.println("The total is "+total);
+	System.out.println("the average is "+avg);
+}
+
+}
+-------------------------------------------------------------------------------
+package Wednesday;
+
+public class Fees extends Marks
+{
+int amt;	
+String month;
+public Fees(int rollno, String name, String address, float phy, float chem, float maths, int amt, String month) 
+{
+	super(rollno, name, address, phy, chem, maths);
+	this.amt = amt;
+	this.month = month;
+}
+void display()
+{
+	super.display();
+	System.out.println("The amount is "+amt);
+	System.out.println("The month is "+month);
+}
+public static void main(String[] args) {
+	Fees ob=new Fees(1,"sandip","Bangalore",66,77,88,45000,"July");
+	ob.display();
+}
+}
+-----------------------------------------------------------------------------------------
 Program-11
 ------------------------
 package Tuesday;
