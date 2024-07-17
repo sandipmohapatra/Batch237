@@ -26,8 +26,11 @@ SELECT     customer_id AS id,
     orders WHERE     order_status = 'completed'
 ORDER BY order_date DESC;
 21)all the Collage from the region and one university :- 1:M
-22)
-
+22)The Adaptive Maintenance phase in the Software Development Life Cycle (SDLC) refers to the process of modifying a software system to keep it usable in a changing environment. This involves making changes and enhancements to software to ensure it continues to operate correctly as the external environment evolves. These changes can be triggered by new business requirements, technological advancements, legislative changes, or user feedback.
+23)A prototyping model is a software development approach that involves creating an incomplete version of the software program being developed. This prototype is then used to visualize and understand the requirements, refine functionalities, and gather feedback from users and stakeholders early in the development process.
+24)MySQL has a different character set what is the command to show all the character set.------>SHOW CHARACTER SET;
+25)illegal queries associated with group by function ------> Non-Aggregated Columns in SELECT,
+Ambiguous Columns,Using Aliases in GROUP BY,HAVING Clause Without GROUP BY,Inconsistent Data Types.
 
 
 
