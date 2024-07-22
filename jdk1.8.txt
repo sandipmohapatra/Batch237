@@ -1046,7 +1046,7 @@ accno, name, email, Balance for 20 customers.
 store the data and display it.
 -------------------------------------------------------------------------------
 Inheritance
-----------------------
+-------------------------------------------------------------------------------
 It is one of the oops concept
 Reuse of existing code. and we can add some more features to it.
 example :- iPhone10 to iPhone15 some new features are add to the older version.
@@ -2036,12 +2036,12 @@ String name,address;
 }
 ------------------------------------------------------------------
 create an interface dept:-
-input deatils(deptno,name,loc)
-display deatils();
-------------------------------------------------------
+input details(deptno,name,loc)
+display details();
+--------------------------------------------------------------------------------------
 create a child class to take input and display the details
 --------------------------------------------------------------------------------------
-static class:- It is used in the case of inner class.A inner class can be static.
+static class:- It is used in the case of inner class. A inner class can be static.
 syntax:-
 class outer 
 {
@@ -2443,17 +2443,22 @@ class GFG
     }
     }
 }
+-----------------------------------------------------------------------------------
+To create immutable classes in Java, you need to ensure that the state of an object cannot be modified after it's created. Here are the steps to create an immutable class in Java:
+
+Declare the class as final so it can't be extended.
+Make all fields private and final so they can only be assigned once.
 ----------------------------------------------------------------------------------
 Lambda Expression
 --------------------------------
 It is also known as functional interface.
 In this the interface will only contain one abstract method so it is called functional interface.
-In lambda expression we don't require 2 classes (parent and child).we don't have to override.we don't have to implement the interface.
-There is a anotation @FunctionalInterface.
+In lambda expression we don't require 2 classes (parent and child).we don't have to override.  we don't have to implement the interface.
+There is a annotation @FunctionalInterface.
 It is used to declare an interface as functional interface.(optional)
 ------------------------------------------------------------------------
 @Override :- It was introduced from jdk1.5.It will match the methods of the parent class and the child class.
-both method name and the signatures(return type,parameter) should match.(optional)
+both method name and the signatures(return type, parameter) should match.(optional)
 -------------------------------------------------------------------------
 what is the use of lambda expression
 1)The code is reduced in this.
@@ -2469,7 +2474,7 @@ void applyforCreditCard();
 *by using lambda expression we will make the interface as functional.
 ----------------------------------------------------------------------
 There are 3 new components in it.
-1)Arguument-list:-It can be empty or have parameters.
+1)Argument-list:-It can be empty or have parameters.
 (),->,{body}
 2)Arrow-token:- It is used to link arguments-list and body of the expression.
 3)Body:- It contains the expression and statement .
@@ -2804,7 +2809,7 @@ Thread synchronized means one thread complete excecution then the next thread wi
 example :-ATM (one person will do the transaction then the second person will do the transaction).
 ---------------------------------------------------------------------------------------------------------
 Collection Framework
-----------------------------------------
+----------------------------------------------------------------
 int a[]=new int[5]; ---------------array the size is fixed.
 In case of Collection the size will be incrementing dynamically as we enter the data.
 ---------------------------------------------------------------
@@ -2987,7 +2992,8 @@ public class SetDemo
 public static void main(String[] args)
 {
 TreeSet<Integer> ts=new TreeSet<Integer>();
-System.out.println(ts.isEmpty());//to check if the TreeSet is empty or not returns a boolean value
+System.out.println(ts.isEmpty());
+//to check if the TreeSet is empty or not returns a boolean value
 System.out.println(ts.size());
 ts.add(70);
 ts.add(20);
@@ -3237,7 +3243,7 @@ while(li.hasPrevious())
 -------------------------------------------------------------------------------------------------------
  java.util.Collections
 ---------------------------------------
-It has lot of static methods which can be implemented ob set,list,map,queue
+It has lot of static methods which can be implemented  set,list,map,queue
 It this we have sort() which can sort a list,map,queue.
 Collections.sort()
 ---------------------------------------------------
@@ -6432,8 +6438,21 @@ wap to create and display product details
 
 productid ,product name, quantity and price
 
+--------------------------
+%s%
+_s
+__s
 --------------------------------------------------------------------------------------------------------------------------------------
-
+The Java Regex or Regular Expression is an API to define a pattern for searching or manipulating strings.
+It is widely used to define the constraint on strings such as password and email validation. 
+We will be able to test your regular expressions by the Java Regex Tester Tool.
+Java Regex API provides 1 interface and 3 classes in java.util.regex package.
+--------------------------------------------------------------
+MatchResult interface
+Matcher class
+Pattern class
+PatternSyntaxException class
+---------------------------------------------------------------------------------------------------------------------
 Example-1
 ------------------------------------------------------
 //. represents single character  
@@ -6460,6 +6479,8 @@ System.out.println(Pattern.matches(".s", "amms"));//false (has more than 2 char)
 System.out.println(Pattern.matches("..s", "mas"));//true (3rd char is s)  
 }}  
 -----------------------------------------------------------------------------------------------------------------------
+Method to check if the entire input string "abcd" matches the regular expression pattern [amn].
+This is the regular expression pattern. The square brackets [] define a character class that matches any one of the characters 'a', 'm', or 'n'.
 Example-3
 ---------------------------
 import java.util.regex.*;  
@@ -6475,20 +6496,20 @@ Example-4
 import java.util.regex.*;  
 class RegexExample4{  
 public static void main(String args[]){  
-System.out.println("? quantifier ....");  
+System.out.println("? quantifier for one time....");  
 System.out.println(Pattern.matches("[amn]?", "a"));//true (a or m or n comes one time)  
 System.out.println(Pattern.matches("[amn]?", "aaa"));//false (a comes more than one time)  
 System.out.println(Pattern.matches("[amn]?", "aammmnn"));//false (a m and n comes more than one time)  
 System.out.println(Pattern.matches("[amn]?", "aazzta"));//false (a comes more than one time)  
 System.out.println(Pattern.matches("[amn]?", "am"));//false (a or m or n must come one time)  
   
-System.out.println("+ quantifier ....");  
+System.out.println("+ quantifier for one or more....");  
 System.out.println(Pattern.matches("[amn]+", "a"));//true (a or m or n once or more times)  
 System.out.println(Pattern.matches("[amn]+", "aaa"));//true (a comes more than one time)  
 System.out.println(Pattern.matches("[amn]+", "aammmnn"));//true (a or m or n comes more than once)  
 System.out.println(Pattern.matches("[amn]+", "aazzta"));//false (z and t are not matching pattern)  
   
-System.out.println("* quantifier ....");  
+System.out.println("* quantifier  for zero or more....");  
 System.out.println(Pattern.matches("[amn]*", "ammmna"));//true (a or m or n may come zero or more times)  
   
 }}  
