@@ -6662,6 +6662,44 @@ public class Employee<T> {
     }
 }
 -------------------------------------------------------------------------------------------------------
+example-2
+---------------------------
+public class GenericClass<T> {
+    private T param1;
+    private T param2;
+    private T param3;
+
+    // Constructor with two parameters
+    public GenericClass(T param1, T param2) {
+        this.param1 = param1;
+        this.param2 = param2;
+        this.param3 = null;
+    }
+
+    // Constructor with three parameters
+    public GenericClass(T param1, T param2, T param3) {
+        this.param1 = param1;
+        this.param2 = param2;
+        this.param3 = param3;
+    }
+
+    public void display() {
+        if (param3 != null) {
+            System.out.println("param1: " + param1 + ", param2: " + param2 + ", param3: " + param3);
+        } else {
+            System.out.println("param1: " + param1 + ", param2: " + param2);
+        }
+    }
+
+    public static void main(String[] args) {
+        GenericClass<String> obj1 = new GenericClass<>("value1", "value2");
+        obj1.display(); // Output: param1: value1, param2: value2
+
+        GenericClass<String> obj2 = new GenericClass<>("value1", "value2", "value3");
+        obj2.display(); // Output: param1: value1, param2: value2, param3: value3
+    }
+}
+-------------------------------------------------------------------------------------------------
 
 
 
