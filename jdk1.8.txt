@@ -6600,7 +6600,68 @@ public class RegexExample8{
         }    
     }    
 }    
--------------------------------------------------------------------------------------------------------------------------------------- 
+------------------------------------------------------------------------------------------------------------------------------
+generic class
+-------------------------
+public class Employee<T> {
+    // Private fields
+    private T empNo;
+    private String name;
+    private String address;
+
+    // Constructor
+    public Employee(T empNo, String name, String address) {
+        this.empNo = empNo;
+        this.name = name;
+        this.address = address;
+    }
+
+    // Getter for empNo
+    public T getEmpNo() {
+        return empNo;
+    }
+
+    // Setter for empNo
+    public void setEmpNo(T empNo) {
+        this.empNo = empNo;
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter for address
+    public String getAddress() {
+        return address;
+    }
+
+    // Setter for address
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    // Main method to demonstrate usage
+    public static void main(String[] args) {
+        // Create an Employee with an Integer empNo
+        Employee<Integer> emp1 = new Employee<>(101, "Sandip", "123 Main St");
+        System.out.println("Employee 1: " + emp1.getEmpNo() + ", " + emp1.getName() + ", " + emp1.getAddress());
+
+        // Create an Employee with a String empNo
+        Employee<String> emp2 = new Employee<>("A102", "Kiran", "456 Elm St");
+        System.out.println("Employee 2: " + emp2.getEmpNo() + ", " + emp2.getName() + ", " + emp2.getAddress());
+
+        // Change the empNo for emp1
+        emp1.setEmpNo(202);
+        System.out.println("Updated Employee 1: " + emp1.getEmpNo() + ", " + emp1.getName() + ", " + emp1.getAddress());
+    }
+}
+-------------------------------------------------------------------------------------------------------
 
 
 
