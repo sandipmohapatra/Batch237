@@ -1,0 +1,90 @@
+Design Patterns in Java
+A design patterns are well-proved solution for solving the specific problem/task.
+They are reusable in multiple projects.
+They provide the solutions that help to define the system architecture.
+They capture the software engineering experiences.
+They provide transparency to the design of an application.
+--------------------------------------------------------------------------------
+When should we use the design patterns?
+We must use the design patterns during the analysis and requirement phase of SDLC(Software Development Life Cycle).
+-----------------------------------------------------------------------------------------
+Design patterns ease the analysis and requirement phase of SDLC by providing information based on prior hands-on experiences.
+---------------------------------------------------------------------------------------------
+Core Java Design Patterns
+In core java, there are mainly three types of design patterns, which are further divided into their sub-parts:
+
+
+1.Creational Design Pattern
+Factory Pattern, Abstract Factory Pattern, Singleton Pattern
+Prototype Pattern, Builder Pattern.
+
+
+2. Structural Design Pattern
+Adapter Pattern, Bridge Pattern, Composite Pattern
+Decorator Pattern, Facade Pattern, Flyweight Pattern, Proxy Pattern
+
+3. Behavioral Design Pattern
+Chain Of Responsibility Pattern, Command Pattern
+Interpreter Pattern, Iterator Pattern, Mediator Pattern
+Memento Pattern, Observer Pattern, State Pattern
+Strategy Pattern, Template Pattern, Visitor Pattern
+--------------------------------------------------------------------------------
+Singleton design pattern in Java
+Singleton Pattern says that just "define a class that has only one instance and provides a global point of access to it".
+
+Advantage of Singleton design pattern
+Saves memory because object is not created at each request. Only single instance is reused again and again.
+
+Usage of Singleton design pattern
+Singleton pattern is mostly used in multi-threaded and database applications. 
+---------------------------------------------------------------------
+insert(),update(),delete(),select() all require connection Object .so single connection object is created and all operation use the same object.
+-----------------------------------------------------------------------------------------------
+Factory Design Pattern
+A Factory Pattern says that just define an interface or abstract class for creating an object but let the subclasses decide which class to instantiate. In other words, subclasses are responsible to create the instance of the class.
+
+Factory Method Pattern allows the sub-classes to choose the type of objects to create.
+example 1:-BESCOM project where we have 3 types of electric bill
+i)DOMESTICPLAN
+ii)COMMERCIALPLAN
+iii)INSTITUTIONALPLAN
+
+example 2:-Railway reservation where we have different types of fares
+i)First AC Fare
+ii)Second AC Fare
+iii)Third AC Fare
+iv)Sleeper Fare
+--------------------------------------------------------------------------------------------------------
+Abstract Factory Design Pattern
+
+Abstract Factory Pattern says that just define an interface or abstract class for creating families of related (or dependent) objects but without specifying their concrete sub-classes. That means Abstract Factory lets a class returns a factory of classes. So, this is the reason that Abstract Factory Pattern is one level higher than the Factory Pattern.
+
+example 1:-
+Bank --ICICI,SBI,HDFC 
+Loan---Home, EducationLoan, BussinessLoan
+for every bank there is different rate of interest and for every type of loan there is also different rate of interest.
+-------------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------------
+Builder Design Pattern
+Builder Pattern says that "construct a complex object from simple objects using step-by-step approach"
+
+----------------------------------------------------
+Template Pattern
+A Template Pattern says that "just define the skeleton of a function in an operation, deferring some steps to its subclasses".
+It is very common technique for reusing the code. This is only the main benefit of it.
+Usage:
+It is used when the common behavior among sub-classes should be moved to a single common class by avoiding the duplication.
+
+----------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
