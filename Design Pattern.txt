@@ -75,15 +75,263 @@ for every bank there is different rate of interest and for every type of loan th
 Builder Design Pattern
 Builder Pattern says that "construct a complex object from simple objects using step-by-step approach"
 
-----------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 Template Pattern
 A Template Pattern says that "just define the skeleton of a function in an operation, deferring some steps to its subclasses".
 It is very common technique for reusing the code. This is only the main benefit of it.
 Usage:
 It is used when the common behavior among sub-classes should be moved to a single common class by avoiding the duplication.
+-------------------------------------------------------------------------------------------------------------
+example-Template Pattern
+---------------------------------------------------
+package Tuesday2;
+// Abstract class with the template method
+abstract class Game {
+    // Template method
+    public final void play() {
+        initialize();
+        startPlay();
+        endPlay();
+    }
 
-----------------------------------------------------------------------------------------------------------------
+    // Steps to be implemented by subclasses
+    abstract void initialize();
+    abstract void startPlay();
+    abstract void endPlay();
+}
 
+// Concrete class implementing the steps
+class Cricket extends Game {
+    @Override
+    void initialize() {
+        System.out.println("Cricket Game Initialized! Start playing.");
+    }
+
+    @Override
+    void startPlay() {
+        System.out.println("Cricket Game Started. Enjoy the game!");
+    }
+
+    @Override
+    void endPlay() {
+        System.out.println("Cricket Game Finished!");
+    }
+}
+
+// Another concrete class implementing the steps
+class Football extends Game {
+    @Override
+    void initialize() {
+        System.out.println("Football Game Initialized! Start playing.");
+    }
+
+    @Override
+    void startPlay() {
+        System.out.println("Football Game Started. Enjoy the game!");
+    }
+
+    @Override
+    void endPlay() {
+        System.out.println("Football Game Finished!");
+    }
+}
+
+// Client code to use the template
+public class TemplatePatternDemo {
+    public static void main(String[] args) {
+        Game game = new Cricket();
+        game.play(); // Play cricket game
+
+        System.out.println();
+
+        game = new Football();
+        game.play(); // Play football game
+    }
+}
+------------------------------------------------------------------------------------------------------------
+Abstract Class Game: This class defines the template method play(), which outlines the steps to play a game. The actual implementation of these steps (initialize(), startPlay(), and endPlay()) is deferred to the subclasses.
+
+Concrete Classes Cricket and Football: These classes extend the Game class and provide concrete implementations of the steps defined in the abstract class.
+
+Client Code: In the TemplatePatternDemo class, we create instances of Cricket and Football, and call the play() method on each. The play() method executes the steps in the defined order, using the concrete implementations provided by the subclasses.
+----------------------------------------------------------------------------------------------------------
+Object casting, also known as type casting or type conversion, is the process of converting an object from one type to another in programming. This can be necessary in strongly-typed languages where operations on different types are restricted.
+--------------------------------------------------------------------------------
+There are two main types of casting:
+
+Implicit Casting (Automatic Type Conversion): This is done automatically by the compiler when it is sure that there will be no data loss in the conversion. For example, converting an int to a float.
+
+int num = 10;
+float f = num;  // Implicit casting from int to float
+--------------------------------------------------------------------------------------------------
+Explicit Casting (Manual Type Conversion): This is done manually by the programmer to convert one data type into another. It is necessary when there is a possibility of data loss or when converting incompatible types.
+
+example:-
+float a=10.6f;
+int b=(int)a;
+System.out.println(b);
+------------------------------------------------------------------------------------------------
+float f = 3.14;
+int num = (int)f;  // Explicit casting from float to int
+-----------------------------------------------------------------------------------------
+In object-oriented programming, casting can also involve converting between different types of objects, especially when dealing with inheritance hierarchies. For example, casting a base class reference to a derived class reference:
+
+class Animal 
+{
+    void makeSound() 
+{
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal 
+{
+    void makeSound()
+ {
+        System.out.println("Bark");
+    }
+
+    void fetch() {
+        System.out.println("Fetching...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();  // Upcasting
+        a.makeSound();         // Output: Bark
+
+        if (a instanceof Dog) {
+            Dog d = (Dog) a;  // Downcasting
+            d.fetch();        // Output: Fetching...
+        }
+    }
+}
+-------------------------------------------------------------------------------------------
+Upcasting: Casting a derived class object to a base class reference. This is safe and done implicitly.
+
+Downcasting: Casting a base class reference back to a derived class object. This can be unsafe and should be done with caution, often using runtime checks like instanceof in Java.
+
+In Java, object casting is often used to work with objects in an inheritance hierarchy. Here's a more detailed look at how casting works in Java:
+
+Upcasting
+Upcasting is casting a derived (child) class to a base (parent) class. This is done implicitly and is safe because the child class is a more specific type of the parent class.
+
+class Animal {
+    void makeSound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    void makeSound() {
+        System.out.println("Bark");
+    }
+
+    void fetch() {
+        System.out.println("Fetching...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        Animal animal = dog;  // Upcasting
+        animal.makeSound();   // Output: Bark
+    }
+}
+In this example, the Dog object is upcast to an Animal reference. The makeSound() method of the Dog class is still called because of dynamic method dispatch.
+
+Downcasting
+Downcasting is casting a base class reference back to a derived class. This is done explicitly and can be unsafe if the object is not actually an instance of the derived class. Therefore, you should use the instanceof operator to check before casting.
+
+public class Main {
+    public static void main(String[] args) {
+        Animal animal = new Dog();  // Upcasting
+        animal.makeSound();         // Output: Bark
+
+        if (animal instanceof Dog) {
+            Dog dog = (Dog) animal;  // Downcasting
+            dog.fetch();             // Output: Fetching...
+        } else {
+            System.out.println("The object is not an instance of Dog");
+        }
+    }
+}
+In this example, the instanceof check ensures that animal is indeed a Dog before performing the downcast. This prevents a ClassCastException.
+
+ClassCastException: This runtime exception occurs if you try to downcast an object to a type it is not an instance of.
+
+Animal animal = new Animal();
+Dog dog = (Dog) animal;  // This will throw ClassCastException at runtime
+Loss of specific functionality: When upcasting, the reference type loses access to the methods that are specific to the derived class.
+
+Animal animal = new Dog();
+// animal.fetch();  // This line will not compile because fetch() is not a method of Animal
+
+Polymorphism: Upcasting is often used in polymorphism to treat different objects through a common interface or base class.
+
+void makeAnimalsSound(Animal animal) {
+    animal.makeSound();
+}
+
+public static void main(String[] args) {
+    Animal dog = new Dog();
+    Animal cat = new Cat();
+    makeAnimalsSound(dog);  // Output: Bark
+    makeAnimalsSound(cat);  // Output: Meow
+}
+
+Collections: When storing objects in collections, such as ArrayList, you often use the base class or interface type.
+
+ArrayList<Animal> animals = new ArrayList<>();
+animals.add(new Dog());
+animals.add(new Cat());
+
+for (Animal animal : animals) 
+{
+    animal.makeSound();  // Output: Bark, Meow
+}
+--------------------------------------------------------------------------------------
+example-1
+----------------------
+package monday;
+import java.util.*;
+class Animal {
+    void makeSound() {
+        System.out.println("Animal sound");
+    }
+}
+class Dog extends Animal {
+    void makeSound() {
+        System.out.println("Bark");
+    }
+}
+
+    class Cat extends Animal {
+        void makeSound() {
+            System.out.println("Meow");
+        }
+
+    }
+
+public class Snippet 
+{
+	public static void main(String[] args) 
+	{
+		
+	List<Animal> animals = new ArrayList<>();
+	animals.add(new Dog());
+	animals.add(new Cat());
+
+	for (Animal animal : animals) 
+	{
+	    animal.makeSound();  // Output: Bark, Meow
+	}
+	
+}
+}
+-----------------------------------------------------------------------------------
 
 
 
