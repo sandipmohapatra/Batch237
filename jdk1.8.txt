@@ -3246,7 +3246,7 @@ while(li.hasPrevious())
 It has lot of static methods which can be implemented  set,list,map,queue
 It this we have sort() which can sort a list,map,queue.
 Collections.sort()
----------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 Example-47
 ----------------------
 package monday;
@@ -3266,7 +3266,7 @@ Collections.sort(ls);
 ls.forEach((x)->System.out.println(x));
 }
 }
--------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 package monday;
 import java.util.*;
 public class ListDemo
@@ -3422,9 +3422,9 @@ Map :-It is an interface.
  In this we enter key and values pair.
 The key should not be duplicate. The value can be duplicate.
 The key and value pair is known as entry.
-Map is useful to search,update or delete elements on the basis of the key.
+Map is useful to search, update or delete elements on the basis of the key.
 -------------------------------------------------------------
-Map --HashMap,  LinkedHashMap, TreeMap(sorting)
+Map --HashMap,  LinkedHashMap, TreeMap(sorting),HashTable
 -----------------------------------------------------------------------------------
 Example-48
 ------------------
@@ -3450,7 +3450,7 @@ System.out.println(hm);
 }
 }
 -------------------------------------------------------------------
-Set set=hm.entrySet();
+Set set=hm.entrySet();//
 Iterator itr=set.iterator();
 while(itr.hasNext())
 {
@@ -3458,7 +3458,7 @@ while(itr.hasNext())
 	System.out.println(en.getKey()+ "  "+en.getValue());
 }
 ---------------------------------------------------------------------------------------------
-HashSet is converted to set because we don't the Interface Iterator in the HashMap.We have it in Set.
+HashSet is converted to set because we don't have the Interface Iterator in the HashMap. We have it in Set.
 entrySet() is used to convert the Map into set.
 Map.Entry is a class contain getKey(),getValue()
 -------------------------------------------------------------------------------------------------------
@@ -3490,7 +3490,7 @@ while(itr.hasNext())
 	Map.Entry en=(Map.Entry<Integer, String>)itr.next();
 	System.out.println(en.getKey()+ "  "+en.getValue());
 }}}
--------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 package monday;
 import java.util.*;
 public class HashMapDemo
@@ -3530,7 +3530,7 @@ for(Map.Entry<Integer, String> m: hm.entrySet())
 	System.out.println(m.getKey()+ "    "+m.getValue());
 System.out.println("****************************");
 }}
----------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------
 package monday;
 import java.util.*;
 public class HashMapDemo
@@ -3624,31 +3624,30 @@ public static void main(String[] args)
 		System.out.println(m.getKey()+ "    "+m.getValue());
 }
 }
------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 HashMap :- It gives high performance in the total data-structure of java collection framework.
 There are 2 factors which effect the performance of hashmap.
 1)Initial Capacity.
 2)Load Factor.
 ------------------------------------------
 1)Initial Capacity is 16 bytes.
-2)It increses automatically when it reaches to the threshold.
- 3)Initailly it is 2 pow 4=16,Then it will 2 pow 5=32,then it will be 2 pow 6=64
+2)It increases automatically when it reaches to the threshold.
+ 3)Initially it is 2 pow 4=16,Then it will 2 pow 5=32,then it will be 2 pow 6=64
 --------------------------------------------------------------------------------------------------------------------------
 Load Factor :- is measured that decides when to increase the HashMap capacity to maintain the get() and put() request.
---------------------------------------------------------------------------------------------------------------------------------
-
+---------------------------------------------------------------------------------------------------------
 wap to create a BookShop where we have some books.(bookid,book name,price)
 enter the book list into a HashMap.
 if the book is sold remove from the list.
 if the price of the book is increased modify the list.
 if a person wants to search for the book he can put the bookid and see the book is available or not.
 finally display the total books available.
---------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
 Queue Interface
 ------------------------------
 It maintains the first-in-first-out order.
 It can be defined as an ordered list that is used to hold elements in the same order.
-The classes are PriorityQueue,Deque and ArrayDeque .
+The classes are PriorityQueue, Deque and ArrayDeque .
 ------------------------------------------------------------------ 
 Example-51
 ---------------------
@@ -3684,7 +3683,7 @@ while(itr1.hasNext())
 System.out.println("the head is "+queue.element());//this will display the head element
 }}
 ----------------------------------------------------------------------------
-ArrayDeque :- It is a class.We can remove and add the elements from both sides.
+ArrayDeque :- It is a class. We can remove and add the elements from both sides.
 It is also called double-ended queue.
 Example-52
 ----------------------
@@ -3755,7 +3754,7 @@ for(Product p:al)
 
 }
 }
---------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 Filter Data
 ------------------
 package Collection;
@@ -3786,18 +3785,47 @@ Collections.sort(al,(p1,p2)->{
 for(Product p:al)
 	System.out.println(p.id+"  "+p.name+"  "+p.price);
 
-System.out.println("*****************Less than 5000***************************");
+System.out.println("******Less than 5000***************************");
 //filter the data example :- product less than Rs 5000
 //we have a class --(Stream)
 Stream<Product> fd=al.stream().filter(x -> x.price < 5000);
 fd.forEach(product -> System.out.println(product.id+"  "+product.name+"  "+product.price));
 
-System.out.println("*****************Greater Than 5000***************************");
+System.out.println("*****Greater Than 5000***************************");
 Stream<Product> fd1=al.stream().filter(x -> x.price > 5000);
 fd1.forEach(product -> System.out.println(product.id+"  "+product.name+"  "+product.price));
+----------------------------------------------------------------------------------------------
+Float totalPrice = al.stream().map(product->product.price).reduce(0.0f,(sum, price)->sum+price);    
+System.out.println(totalPrice);
+-----------------------------------------------------------------------------------------------------------
+long count = al.stream().filter(product->product.price<30000).count();  
+System.out.println(count);  
+
 }
 }
 -----------------------------------------------------------------------------------------------------------
+import java.util.*;
+import java.util.stream.Stream;
+public class LambdaExpressionDemo
+{
+public static void main(String[] args)
+{
+ArrayList<Product> al=new ArrayList<Product>();
+al.add(new Product(1,"Laptop",40000.35f));
+al.add(new Product(2,"Desktop",30000.35f));
+al.add(new Product(3,"Keyboard",4000.45f));
+al.add(new Product(4,"Mouse",300.00f));
+Float totalPrice = al.stream().map(product->product.price).reduce(0.0f,(sum, price)->sum+price);    
+System.out.println(totalPrice);  
+}
+}
+
+//This method takes a sequence of input elements and combines them into a single summary //result. example :-finding the sum of numbers, or accumulating elements into a list.
+// we are using reduce() method, which is used to sum of all the product prices.
+-------------------------------------------------------------------------------------
+ long count = productsList.stream().filter(product->product.price<30000).count();  
+        System.out.println(count);  
+---------------------------------------------------------------------------------------------------------------
 Example -55
 ------------------------
 EnumSet :- it sort the data according to the enum list provided.
