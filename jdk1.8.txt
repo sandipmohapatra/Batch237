@@ -4000,7 +4000,8 @@ Multi Thread Program:-
 Each thread will do some task.
 We can create object of Thread and assign the task.
 In this we will have run() and we will have start() .the start() will call the run().
-For this we can either extends Thread class or implement runnable interface.
+For this we can either extends 
+ class or implement runnable interface.
 There will be Thread switching .So we will see all the start() exceute at the same time and the output will be a mixture of all the task.
 ------------------------------------------------------------------------------------------------------
 Thread lifecycle
@@ -4051,7 +4052,7 @@ Methods in Thread class
 ----------------------------------------
 1)getName() :- It gets the name of Thread.
 
-2)isAlive() :- It check if the Thread is still running or completed it's execution.It returns boolean value.
+2)isAlive() :- It check if the Thread is still running or completed it's execution. It returns Boolean value.
 
 3)run():- Entry point for the thread.
 
@@ -4075,7 +4076,8 @@ MAX_PRIORITY=RANGE(6 to 10)
 
 12)notifyAll() :- This will wake up all the waiting threads.
 
-----------------------------------------------------------------------------------
+13)join(): When the join() method is invoked, the current thread stops its execution and go into the wait state. The current thread remains in the wait state until the thread on which the join() method is invoked called is dead or the wait for the specified time frame() is over.
+-------------------------------------------------------------------------------------------------------------
 Example-59
 ---------------------
 package Thread;
@@ -4184,8 +4186,52 @@ public class Thread5 implements Runnable
 		obj1.start();obj2.start();obj3.start();
 	}
 }
+--------------------------------------------------------------------------------------------------------------------------
+Join Example
+-----------------------
+package Thursday;
+public class Thread4 extends Thread
+{
+public void run()
+{
+	for(int i=1;i<=10;i++)
+	{
+		System.out.println(Thread.currentThread().getName()+" "+i);
+		try {
+			sleep(1000);
+		} catch (InterruptedException e) {
+						e.printStackTrace();
+		}
+	}
+
+}
+public static void main(String[] args) 
+{
+	Thread4 ob1=new Thread4();
+	Thread4 ob2=new Thread4();
+	Thread4 ob3=new Thread4();
+	System.out.println(ob1.isAlive());
+	ob1.start();
+	ob1.setPriority(10);
+	try {
+		ob1.join();//waits for this thread to die then the other thread will start executing.
+	} catch (InterruptedException e) {
+				e.printStackTrace();
+	}
+	System.out.println(ob1.isAlive());
+	ob2.start();
+	ob1.setPriority(MAX_PRIORITY);
+	ob2.setPriority(MIN_PRIORITY);
+	ob3.setPriority(NORM_PRIORITY);
+	ob2.setPriority(1);
+	System.out.println(ob1.getPriority());
+	System.out.println(ob2.getPriority());
+	System.out.println(ob3.getPriority());
+	ob3.start();
+}
+}
 -------------------------------------------------------------------------------------
-wap to find out who gets the tickects out of the 3 friends.
+wap to find out who gets the tickets out of the 3 friends.
 There are only 2 tickets available in the counter.
 ------------------------------------------------------------------------------------------
 Example-62
@@ -4583,20 +4629,20 @@ System.out.println("Finished All Thread");
 }
 --------------------------------------------------------------------------------------------------------
 concurrent :- why this package is created.
-all the threads run concurrently at the same time.This will speed up the exceution and performance is better.
+all the threads run concurrently at the same time. This will speed up the execution and performance is better.
 Multiple threads are running means there will be deadlock.so we generally use syncronized so that one thread will exceute and after the completion of that thread the other thread will execute.
 
 syncronized(ATM) is one of the solution of deadlock.
 
-Concurrent package takes care of Deadlock.It will allow one after the other thread to excute.
+Concurrent package takes care of Deadlock. It will allow one after the other thread to excute.
 It helps multi-tasking,efficent excution and faster excution .
 we have ConcurrentHashMap,ConcurrentHashTable also.
 ------------------------------------------------------------------------------------------------------
 ConcurrentHashMap:-
 It is similar to HashMap but it is threadsafe and concurrent and we have some more methods.we have to import java.util.concurrent
 ----------------------------------------------------------------------------------------
-HashTable :-It is synchronized we don't have ConcurrentHashTable.No deadLock
-HashMap :-It is not  synchronized we have ConcurrentHashMap.Threat of deadLock.
+HashTable :-It is synchronized we don't have ConcurrentHashTable. No deadLock
+HashMap :-It is not  synchronized we have ConcurrentHashMap. Threat of deadLock.
 ConcurrentLinkedQueue 
 ---------------------------------------------------------------------------------------------------
 Example-69
@@ -5138,12 +5184,12 @@ File
 5)There are 2 types of stream by which we can read and write data into a file.
 a)byte stream
 b)character stream
-Under this byte stream and charcater stream we have different class.
+Under this byte stream and character stream we have different class.
 6)While working with file we have to handle exception because it throws checked Exception.
 Exceptions :- EOFException,FileNotFoundException,InterruptedIOException,IOException.
 ----------------------------------------------------------------------------------
 We have some file class methods
---------------------------------------------------
+---------------------------------------------------------------------------------
 Example-72
 -------------------
 //we have to create a file on the project folder
