@@ -4071,12 +4071,10 @@ MAX_PRIORITY=RANGE(6 to 10)
 9)Daemon Thread :- It is a low priority thread which runs in the background doing garbage collection operation.
 
 10)wait() :- The thread will go to wait until some other thread doesnot notify.
-
 11)notify():- Wake up a thread which is in waiting state.
-
 12)notifyAll() :- This will wake up all the waiting threads.
-
 13)join(): When the join() method is invoked, the current thread stops its execution and go into the wait state. The current thread remains in the wait state until the thread on which the join() method is invoked called is dead or the wait for the specified time frame() is over.
+14)yield():-
 -------------------------------------------------------------------------------------------------------------
 Example-59
 ---------------------
@@ -5176,7 +5174,7 @@ public static void main(String[] args) {
 }
 ------------------------------------------------------------------------------------------------------
 File 
--------------
+------------------------------------------------------------------------------------------------------
 1)It is used to store and manage data.
 2)Reading and writing of data into a file can be done using byte stream or character stream.(flow from source to destination)
 3)The process of reading and writing object into a file is known as serialization and de-serialization.
@@ -5218,7 +5216,7 @@ System.out.println("this is a directory "+f.isDirectory());
 }
 -----------------------------------------------------------------------------------------
 Byte stream(10101001001)
----------------------
+--------------------------------------------
 There are 2 abstract classes.
 --------------------------------------------
 1)InputStream-reading data from the file.
@@ -5384,7 +5382,7 @@ while((x=br.readLine())!=null) //null indicates EOF
 }
 }
 }
----------------------------------------------------
+------------------------------------------------------------
 CharArrayWriter/CharArrayReader
 ------------------------------------------------------------
 CharArrayWriter :- it is used to write common data to multiple files.
@@ -5413,7 +5411,7 @@ public static void main(String[] args)throws Exception
 }
 -----------------------------------------------------------------------------------------------------------
 CharArrayReader:- It reads array of character.
---------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 package File;
 import java.io.*;
 public class FileExample7 
@@ -5479,6 +5477,23 @@ main()throws Exception
 ---------------------------------------------------------------------------------
 Example-1
 ----------------------
+package Friday1;
+import java.sql.*;
+public class JDBC1 
+{
+public static void main(String[] args)throws Exception 
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	Statement st=con.createStatement();
+	//st.execute("create table jdbcexample(empno int,name varchar(30),address varchar(30))");
+st.execute("insert into jdbcexample values(102,'Pavan','bangalore')");
+
+	System.out.println("row inserted");
+}
+}
+------------------------------------------------------------------------------------------------------------------
+
 Insert
 ------------------
 package JDBC;
@@ -5515,8 +5530,8 @@ public class Student
 {
 public static void main(String[] args)throws Exception
 {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
 		Statement st=con.createStatement();
 		st.execute("update marlabsstud set address='Kolkotta' where empno=101");
 		System.out.println("Row updated");		
@@ -5531,8 +5546,8 @@ public class Student
 {
 public static void main(String[] args)throws Exception
 {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
 		Statement st=con.createStatement();
 		st.execute("delete marlabsstud where empno=101");
 		System.out.println("Row deleted");		
@@ -5551,8 +5566,8 @@ public class Student
 {
 public static void main(String[] args)throws Exception
 {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
 		Statement st=con.createStatement();
 		ResultSet rs=st.executeQuery("select * from marlabsstud");
 		while(rs.next())
@@ -5569,6 +5584,25 @@ types of execute methods
 2)exceuteUpdate() -----update(returns 0 or 1)
 3)excute() ----insert,update,delete,create (returns true,false);
 ---------------------------------------------------------------------------------------------
+example-1
+---------------------
+package Friday1;
+import java.sql.*;
+public class JDBC1 
+{
+public static void main(String[] args)throws Exception 
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	Statement st=con.createStatement();
+	//st.execute("create table jdbcexample(empno int,name varchar(30),address varchar(30))");
+st.execute("insert into jdbcexample values(102,'Pavan','bangalore')");
+
+	System.out.println("row inserted");
+}
+}
+----------------------------------------------------------------------------------------------------
+
 
 1)Oracle 10xe 
 2)MySql 
