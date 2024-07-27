@@ -7067,7 +7067,46 @@ public static void main(String[] args)throws Exception
 }
 }
 -------------------------------------------------------------------------------------------------------------------------------------
-
+package Friday1;
+import java.sql.*;
+import java.util.*;
+public class JDBC2 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	System.out.println("enter name who's address want to update");
+	String name=ob.next();
+	String address=ob.next();
+	PreparedStatement ps=con.prepareStatement("update jdbcexample set address=? where name=?");
+	ps.setString(1, address);
+	ps.setString(2,name);
+	ps.execute();
+		System.out.println("row updated");
+}
+}
+----------------------------------------------------------------------------------------------------
+package Friday1;
+import java.sql.*;
+import java.util.*;
+public class JDBC2 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	System.out.println("enter empno which you want to delete");
+	int empno=ob.nextInt();
+	PreparedStatement ps=con.prepareStatement("delete from jdbcexample where empno=?");
+	ps.setInt(1, empno);
+	ps.execute();
+		System.out.println("row delete");
+}
+}
+-----------------------------------------------------------------------------------------------------------
 
 
 
