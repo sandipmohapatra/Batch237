@@ -796,9 +796,9 @@ package monday;
 
 public class Employee 
 {
-int empno;
-String name,designation;
-float salary;
+private int empno;
+private String name,designation;
+private float salary;
 //right click >source >generate getter and setter
 public int getEmpno() {
 	return empno;
@@ -5483,11 +5483,14 @@ public class JDBC1
 {
 public static void main(String[] args)throws Exception 
 {
-	Class.forName("com.mysql.cj.jdbc.Driver");
+	Class.forName("com.mysql.cj.jdbc.Driver");//load driver
 	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	
 	Statement st=con.createStatement();
+
 	//st.execute("create table jdbcexample(empno int,name varchar(30),address varchar(30))");
-st.execute("insert into jdbcexample values(102,'Pavan','bangalore')");
+	
+	st.execute("insert into jdbcexample values(102,'Pavan','bangalore')");
 
 	System.out.println("row inserted");
 }
@@ -7019,7 +7022,51 @@ public class MonthDayExample1
 }  
 
 ----------------------------------------------------------------------------------------------------------------
-
+JDBC Example
+---------------------
+example-1 (Statement)
+package Friday1;
+import java.sql.*;
+public class JDBC1 
+{
+public static void main(String[] args)throws Exception 
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	//Statement st=con.createStatement();
+	//st.execute("create table jdbcexample(empno int,name varchar(30),address varchar(30))");
+	//st.execute("insert into jdbcexample values(103,'Madhu','bangalore')");
+	//st.execute("update jdbcexample set address='Pune' where empno=103");
+	//st.execute("delete from jdbcexample where empno=103");
+		System.out.println("row inserted");
+}
+}
+--------------------------------------------------------------------------------------------------------------------------
+example-2(PreparedStatement)
+-----------------------------------------------------
+package Friday1;
+import java.sql.*;
+import java.util.*;
+public class JDBC2 
+{
+public static void main(String[] args)throws Exception 
+{
+	Scanner ob=new Scanner(System.in);
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	System.out.println("enter empno,name and address");
+	int empno=ob.nextInt();
+	String name=ob.next();
+	String address=ob.next();
+	PreparedStatement ps=con.prepareStatement("insert into jdbcexample values(?,?,?)");
+	ps.setInt(1, empno);
+	ps.setString(2,name);
+	ps.setString(3, address);
+	ps.execute();
+		System.out.println("row inserted");
+}
+}
+-------------------------------------------------------------------------------------------------------------------------------------
 
 
 
