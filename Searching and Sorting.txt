@@ -32,12 +32,11 @@ Minimize object creation: Reuse objects when possible.
 Use appropriate data structures: Choose the right data structure for the job.
 Close resources: Ensure resources are properly closed in a finally block or use try-with-resources.
 Monitor and profile: Use profiling tools to monitor memory usage and identify memory leaks.
-Optimize GC settings: Tune GC parameters based on application needs.
 
 
 Conclusion
 Effective memory management in Java is crucial for building efficient and reliable applications. By understanding how the JVM handles memory and following best practices, developers can minimize the risk of memory leaks and optimize the performance of their applications.
------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing in half the portion of the list that could contain the item, until you've narrowed down the possible locations to just one.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 public class BinarySearch 
