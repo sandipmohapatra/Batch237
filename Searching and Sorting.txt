@@ -126,3 +126,412 @@ If the loop completes without finding the key, return -1 indicating the element 
 Usage
 The example in the main method demonstrates how to use the linear Search method. It searches for the key 10 in the array {2, 3, 4, 10, 40} and prints the result.
 -----------------------------------------------------------------------------------------------------------------
+Bubble Sort
+---------------------
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        boolean swapped;
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            // If no two elements were swapped by inner loop, then the array is sorted
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        System.out.println("Unsorted array:");
+        printArray(arr);
+
+        bubbleSort(arr);
+        
+        System.out.println("Sorted array:");
+        printArray(arr);
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+}
+--------------------------------------------------------------------------------------------------------------------
+public class MergeSort {
+
+    // Merges two subarrays of arr[].
+    // First subarray is arr[l..m]
+    // Second subarray is arr[m+1..r]
+    public static void merge(int arr[], int left, int mid, int right) {
+        // Find sizes of two subarrays to be merged
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        // Create temp arrays
+        int leftArray[] = new int[n1];
+        int rightArray[] = new int[n2];
+
+        // Copy data to temp arrays
+        for (int i = 0; i < n1; ++i)
+            leftArray[i] = arr[left + i];
+        for (int j = 0; j < n2; ++j)
+            rightArray[j] = arr[mid + 1 + j];
+
+        // Merge the temp arrays
+
+        // Initial indexes of first and second subarrays
+        int i = 0, j = 0;
+
+        // Initial index of merged subarray array
+        int k = left;
+        while (i < n1 && j < n2) {
+            if (leftArray[i] <= rightArray[j]) {
+                arr[k] = leftArray[i];
+                i++;
+            } else {
+                arr[k] = rightArray[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements of leftArray[] if any
+        while (i < n1) {
+            arr[k] = leftArray[i];
+            i++;
+            k++;
+        }
+
+        // Copy remaining elements of rightArray[] if any
+        while (j < n2) {
+            arr[k] = rightArray[j];
+            j++;
+            k++;
+        }
+    }
+
+    // Main function that sorts arr[l..r] using merge()
+    public static void mergeSort(int arr[], int left, int right) {
+        if (left < right) {
+            // Find the middle point
+            int mid = (left + right) / 2;
+
+            // Sort first and second halves
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+
+            // Merge the sorted halves
+            merge(arr, left, mid, right);
+        }
+    }
+
+    // A utility function to print array of size n
+    public static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    // Main method to test above
+    public static void main(String args[]) {
+        int arr[] = { 12, 11, 13, 5, 6, 7 };
+
+        System.out.println("Given Array");
+        printArray(arr);
+
+        mergeSort(arr, 0, arr.length - 1);
+
+        System.out.println("\nSorted array");
+        printArray(arr);
+    }
+}
+----------------------------------------------------------------------------------------------------------
+Explanation
+merge() Method:
+
+Merges two subarrays of arr[].
+First subarray is arr[l..m].
+Second subarray is arr[m+1..r].
+mergeSort() Method:
+
+Recursively sorts the array by dividing it into halves and calling mergeSort() on each half.
+Finally, it merges the sorted halves using the merge() method.
+printArray() Method:
+
+Prints the elements of the array.
+Main Method:
+
+Initializes an array.
+Prints the unsorted array.
+Calls mergeSort() to sort the array.
+Prints the sorted array.
+
+Given Array
+12 11 13 5 6 7 
+
+Sorted array
+5 6 7 11 12 13 
+--------------------------------------------------------------------------
+Quick sort
+-------------------
+Quick Sort
+Quick Sort is a highly efficient sorting algorithm and is based on the divide-and-conquer approach. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively.
+
+Steps in Quick Sort
+Choose a Pivot: Pick an element from the array as the pivot (commonly the first, last, or middle element, or a random element).
+Partitioning: Reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it.
+Recursively Apply: Recursively apply the above steps to the sub-arrays of elements with smaller and greater values.
+Pseudocode
+Here's a simple pseudocode for Quick Sort:
+----------------------------------------------------------------------------------------------------------------
+procedure quickSort(A, low, high)
+    if low < high
+        pivotIndex = partition(A, low, high)
+        quickSort(A, low, pivotIndex - 1)
+        quickSort(A, pivotIndex + 1, high)
+
+procedure partition(A, low, high)
+    pivot = A[high]
+    i = low - 1
+    for j = low to high - 1
+        if A[j] < pivot
+            i = i + 1
+            swap A[i] with A[j]
+    swap A[i + 1] with A[high]
+    return i + 1
+----------------------------------------------------------------------------------------------------------
+public class QuickSort {
+
+    // This method takes last element as pivot, places
+    // the pivot element at its correct position in sorted
+    // array, and places all smaller elements to left of
+    // pivot and all greater elements to right of pivot
+    public static int partition(int arr[], int low, int high) {
+        int pivot = arr[high];
+        int i = (low - 1); // index of smaller element
+        for (int j = low; j < high; j++) {
+            // If current element is smaller than or equal to pivot
+            if (arr[j] <= pivot) {
+                i++;
+
+                // swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        // swap arr[i+1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1;
+    }
+
+    // The main function that implements QuickSort
+    // arr[] --> Array to be sorted,
+    // low --> Starting index,
+    // high --> Ending index
+    public static void quickSort(int arr[], int low, int high) {
+        if (low < high) {
+            // pi is partitioning index, arr[pi] is now at right place
+            int pi = partition(arr, low, high);
+
+            // Recursively sort elements before
+            // partition and after partition
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    // A utility function to print array of size n
+    public static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    // Main method to test the QuickSort
+    public static void main(String args[]) {
+        int arr[] = {10, 7, 8, 9, 1, 5};
+        int n = arr.length;
+
+        System.out.println("Unsorted array:");
+        printArray(arr);
+
+        quickSort(arr, 0, n - 1);
+
+        System.out.println("Sorted array:");
+        printArray(arr);
+    }
+}
+Explanation
+partition() Method:
+
+This method selects the last element as the pivot.
+It places all elements smaller than the pivot to the left and all greater elements to the right.
+It returns the partitioning index.
+quickSort() Method:
+
+This method recursively sorts the sub-arrays before and after the partitioning index.
+printArray() Method:
+
+Prints the elements of the array.
+Main Method:
+
+Initializes an array.
+Prints the unsorted array.
+Calls quickSort() to sort the array.
+Prints the sorted array.
+Unsorted array:
+10 7 8 9 1 5 
+Sorted array:
+1 5 7 8 9 10 
+
+--------------------------------------------------------------------------
+Heap Sort
+----------------
+Heap Sort
+Heap Sort is a comparison-based sorting algorithm that uses a binary heap data structure. It divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region. It can be seen as an improved selection sort.
+
+Steps in Heap Sort
+Build a max heap from the input data.
+Extract the maximum element from the heap (swap it with the last element of the heap and reduce the size of the heap by one).
+Heapify the root of the heap to maintain the max heap property.
+Repeat steps 2 and 3 until the size of the heap is greater than 1.
+Pseudocode
+Here's a simple pseudocode for Heap Sort:
+
+procedure heapSort(A: array of items)
+    buildMaxHeap(A)
+    for i = length(A) - 1 downto 1
+        swap(A[0], A[i])
+        heapSize := heapSize - 1
+        maxHeapify(A, 0)
+
+procedure buildMaxHeap(A: array of items)
+    heapSize := length(A)
+    for i = floor(length(A) / 2) downto 0
+        maxHeapify(A, i)
+
+procedure maxHeapify(A: array of items, i: index)
+    left := 2 * i + 1
+    right := 2 * i + 2
+    largest := i
+    if left < heapSize and A[left] > A[largest]
+        largest := left
+    if right < heapSize and A[right] > A[largest]
+        largest := right
+    if largest != i
+        swap(A[i], A[largest])
+        maxHeapify(A, largest)
+---------------------------------------------------------------------------------------------------------------------
+public class HeapSort {
+    public void sort(int arr[]) {
+        int n = arr.length;
+
+        // Build heap (rearrange array)
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(arr, n, i);
+
+        // One by one extract an element from heap
+        for (int i = n - 1; i > 0; i--) {
+            // Move current root to end
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            // call max heapify on the reduced heap
+            heapify(arr, i, 0);
+        }
+    }
+
+    // To heapify a subtree rooted with node i which is
+    // an index in arr[]. n is size of heap
+    void heapify(int arr[], int n, int i) {
+        int largest = i; // Initialize largest as root
+        int left = 2 * i + 1; // left = 2*i + 1
+        int right = 2 * i + 2; // right = 2*i + 2
+
+        // If left child is larger than root
+        if (left < n && arr[left] > arr[largest])
+            largest = left;
+
+        // If right child is larger than largest so far
+        if (right < n && arr[right] > arr[largest])
+            largest = right;
+
+        // If largest is not root
+        if (largest != i) {
+            int swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+
+            // Recursively heapify the affected sub-tree
+            heapify(arr, n, largest);
+        }
+    }
+
+    // A utility function to print array of size n
+    static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    // Driver program
+    public static void main(String args[]) {
+        int arr[] = {12, 11, 13, 5, 6, 7};
+        int n = arr.length;
+
+        System.out.println("Unsorted array:");
+        printArray(arr);
+
+        HeapSort ob = new HeapSort();
+        ob.sort(arr);
+
+        System.out.println("Sorted array:");
+        printArray(arr);
+    }
+}
+Explanation
+sort() Method:
+
+Builds a max heap from the input array.
+Iteratively extracts the maximum element from the heap, places it at the end of the array, and reduces the heap size by one.
+Calls heapify() to maintain the max heap property.
+heapify() Method:
+
+Ensures the subtree rooted at index i satisfies the max heap property.
+Compares the root element with its left and right children.
+Swaps the root with the largest child and recursively heapifies the affected subtree.
+printArray() Method:
+
+Prints the elements of the array.
+Main Method:
+
+Initializes an array.
+Prints the unsorted array.
+Calls sort() to sort the array.
+Prints the sorted array.
+Example Output
+12 11 13 5 6 7 
+Sorted array:
+5 6 7 11 12 13 
+---------------------------------------------------------------------------------
