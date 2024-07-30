@@ -1,0 +1,128 @@
+Memory management in Java is handled through an automatic process known as Garbage Collection (GC), which is responsible for reclaiming memory that is no longer in use by the program. Here’s an overview of how memory management works in Java:
+
+1. Memory Allocation
+Java applications use two main types of memory allocation:
+
+Stack Memory:
+
+Used for static memory allocation.
+Stores primitive data types (e.g., int, float) and references to objects.
+Each thread has its own stack, which stores method calls, local variables, and references.
+
+----------------------------------------------
+Heap Memory:
+
+Used for dynamic memory allocation.
+Stores objects and arrays.
+Shared among all threads of an application.
+-----------------------------------------------------------------------------------------
+
+2. Garbage Collection (GC)
+GC is the process of automatically reclaiming memory by identifying and discarding objects that are no longer reachable in the application. 
+----------------------------------------------------------------
+4. Memory Leaks
+Although Java handles memory management automatically, memory leaks can still occur if references to unused objects are not cleared. Common causes of memory leaks include:
+
+Static fields holding references to objects.
+Unclosed resources (e.g., file handles, network connections).
+Long-lived collections with objects that are no longer needed.
+
+5. Best Practices for Memory Management
+Minimize object creation: Reuse objects when possible.
+Use appropriate data structures: Choose the right data structure for the job.
+Close resources: Ensure resources are properly closed in a finally block or use try-with-resources.
+Monitor and profile: Use profiling tools to monitor memory usage and identify memory leaks.
+Optimize GC settings: Tune GC parameters based on application needs.
+
+
+Conclusion
+Effective memory management in Java is crucial for building efficient and reliable applications. By understanding how the JVM handles memory and following best practices, developers can minimize the risk of memory leaks and optimize the performance of their applications.
+-----------------------------------------------------------
+Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing in half the portion of the list that could contain the item, until you've narrowed down the possible locations to just one.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+public class BinarySearch 
+{
+    // Returns the index of key if it is present in array[], else return -1
+    public static int binarySearch(int[] array, int key) {
+        int left = 0, right = array.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            // Check if key is present at mid
+            if (array[mid] == key)
+                return mid;
+
+            // If key greater, ignore left half
+            if (array[mid] < key)
+                left = mid + 1;
+
+            // If key is smaller, ignore right half
+            else
+                right = mid - 1;
+        }
+
+        // Key was not present in the array
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {2, 3, 4, 10, 40};
+        int key = 10;
+        int result = binarySearch(array, key);
+        if (result == -1)
+            System.out.println("Element not present in array");
+        else
+            System.out.println("Element found at index " + result);
+    }
+}
+-------------------------------------------------------------------------------------------------------------------
+Initialization:
+
+left is the starting index (0).
+right is the ending index (array.length - 1).
+Loop until the search space is empty (left <= right):
+
+Calculate the middle index: mid = left + (right - left) / 2.
+If the middle element is the key, return the middle index.
+If the key is greater than the middle element, narrow the search to the right half (left = mid + 1).
+If the key is smaller than the middle element, narrow the search to the left half (right = mid - 1).
+If the element is not found, return -1.
+
+Usage
+The example in the main method shows how to use the binarySearch method. It searches for the key 10 in the array {2, 3, 4, 10, 40} and prints the result.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+linear search in java
+Linear search is a straightforward algorithm for finding a specific element in a list. It works by sequentially checking each element of the list until the desired element is found or the list is exhausted.
+
+public class LinearSearch 
+{
+    // Returns the index of key if it is present in array[], else return -1
+    public static int linearSearch(int[] array, int key) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == key)
+                return i;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {2, 3, 4, 10, 40};
+        int key = 10;
+        int result = linearSearch(array, key);
+        if (result == -1)
+            System.out.println("Element not present in array");
+        else
+            System.out.println("Element found at index " + result);
+    }
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Loop through each element of the array:
+The loop runs from the first element (index 0) to the last element (index array.length - 1).
+Check each element:
+If the current element array[i] is equal to the key, return the index i.
+If the element is not found, return -1:
+If the loop completes without finding the key, return -1 indicating the element is not present in the array.
+Usage
+The example in the main method demonstrates how to use the linear Search method. It searches for the key 10 in the array {2, 3, 4, 10, 40} and prints the result.
+-----------------------------------------------------------------------------------------------------------------
