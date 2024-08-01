@@ -45,4 +45,54 @@ public void destroy()
 	System.out.println("Destroy");
 	}
 }
--------------------------------
+-------------------------------------------------------------------------------------------
+import java.io.*;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+
+
+@WebServlet("/EmployeeRegister")
+public class EmployeeRegister extends GenericServlet 
+{
+public void init()
+{
+	System.out.println("init");
+	}
+
+
+@Override
+public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException 
+{
+res.setContentType("text/html");
+PrintWriter pw=res.getWriter();
+String a=req.getParameter("t1");
+String b=req.getParameter("t2");
+String c=req.getParameter("t3");
+pw.println("The Employee ID is :"+a);
+pw.println("<br>");
+pw.println("The Name is :"+b);
+pw.println("<br>");
+pw.println("The Address is :"+c);
+try
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mphasis237","root","1234");
+	PreparedStatement ps=con.prepareStatement("insert into jdbcexample values(?,?,?)");
+	ps.setInt(1,Integer.parseInt(a));
+	ps.setString(2,b);
+	ps.setString(3,c);
+	ps.execute();
+	pw.println("row inserted");
+}
+catch(Exception ae)
+{
+	ae.printStackTrace();
+}
+}
+public void destroy()
+{
+	System.out.println("Destroy");
+	}
+}
+-------------------------------------------------------------------------------------------
