@@ -1,0 +1,48 @@
+<html>
+<body bgcolor=cyan>
+<h1>Employee Registration Page</h1><hr>
+<form action=EmployeeRegister>
+<table>
+<tr><td>Enter EmpID<td><input type=text name=t1 size=20 required></tr>
+<tr><td>Enter Name<td><input type=text name=t2 size=20 required></tr>
+<tr><td>Enter Address<td><input type=text name=t3 size=20 required></tr>
+<tr><td><td><input type=submit value=submit></tr>
+</table>
+</form>
+</body>
+</html>
+-------------------------------------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+
+
+@WebServlet("/EmployeeRegister")
+public class EmployeeRegister extends GenericServlet 
+{
+public void init()
+{
+	System.out.println("init");
+	}
+
+
+@Override
+public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException 
+{
+res.setContentType("text/html");
+PrintWriter pw=res.getWriter();
+String a=req.getParameter("t1");
+String b=req.getParameter("t2");
+String c=req.getParameter("t3");
+pw.println("The Employee ID is :"+a);
+pw.println("<br>");
+pw.println("The Name is :"+b);
+pw.println("<br>");
+pw.println("The Address is :"+c);
+}
+public void destroy()
+{
+	System.out.println("Destroy");
+	}
+}
+-------------------------------
