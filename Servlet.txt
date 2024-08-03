@@ -702,7 +702,7 @@ Servlet context is also called as application object.
 Servlet context is used to obtain the information about environment on which servlet is running.
 For every web-application the web-container needs the deployment descriptor .if there is no error the web Container will create servletContext object for the application. There may be multiple servlet context object inside a web Container.
 
-Servlet context is one per one web application .To communicate with servlet Conatiner we use ServletContext object.
+Servlet context is one per one web application .To communicate with servlet Container we use ServletContext object.
 
 Methods inside ServletContext interface are
 1)String getInitParameter(String name)
@@ -717,12 +717,14 @@ HTTP Servlet:-
 ---------------------------
 1)SendRedirect() :-we can redirect the browser to a resource part of the same application.
 we can redirect another web application running through the same web container.
+
 2)RequestDispatcher :-
 it is an interface inside javax.servlet.*;
 it contains two methods :-
 1)forward(ServletRequest req,ServletResponse res)
 2)include(ServletRequest req,ServletResponse res)
 RequestDispatcher is to forward the request to other servlet or include the output of another servlet as a part of the response.
+
 To build a web application to be stateful that can remember the state of the client we use 
 1)hidden field 2)cookies 3)session object 4)url rewritting
 
@@ -1486,9 +1488,92 @@ Department
 Salary
 ---------------------------------------------------------------------------------------------------
 
+Send Redirect Example
+---------------------------------------
+Register.html
+----------------------------
+<html>
+<body bgcolor=cyan>
+<form action="First" method=post>
+<h1><center>Employee Registration Page</center></h1><hr>
+<table>
+<tr><td>Enter  name<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter  password<td><input type=password name=t2 size=20></tr>
+<tr><td>Enter  Address<td><input type=text name=t3 size=20></tr>
+<tr><td>Enter  Email<td><input type=text name=t4 size=20></tr>
+<tr><td>Enter  Phoneno<td><input type=number name=t5 size=20></tr>
+<tr><td>Enter  Age<td><input type=number name=t6 size=20></tr>
+<tr><td><td><input type=submit value="Register" ></tr>
+</table>
+</form>
+</body>
+</html>
+-----------------------------------------------------------------------------------
+First.java
+---------------------
+import javax.servlet.*;
+import java.io.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/First")
+public class First extends HttpServlet {
+			@Override
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	{
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		String a=req.getParameter("t1");
+		String b=req.getParameter("t2");
+		String c=req.getParameter("t3");
+		String d=req.getParameter("t4");
+		String e=req.getParameter("t5");
+		String f=req.getParameter("t6");
+		res.sendRedirect("Login.html");
+	}
+}
+--------------------------------------------------------------------------------------
+Login.html
+-------------------
+<html>
+<body bgcolor=cyan>
+<form action="Second" method=get>
+<h1><center>Employee Login Page</center></h1><hr>
+<table>
+<tr><td>Enter  Username<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter  password<td><input type=password name=t2 size=20></tr>
+<tr><td><td>
+<input type=submit value="Login" ></tr>
+</table></form></body></html>
 
+------------------------------------------------------------------------------
+Second.java
+-------------------------------
+import javax.servlet.*;
+import java.io.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/Second")
+public class Second extends HttpServlet {
+			@Override
+	public void service(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	{
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		String a=req.getParameter("t1");
+		String b=req.getParameter("t2");
+		if(a.equals("sandip")&& b.equals("1234"))
+	res.sendRedirect("success.html");
+		else
+			res.sendRedirect("Login.html");
+	}			}
+------------------------------------------------------------------------------------------------
+success.html
+---------------------
+<body>
+<h1>Login Success</h1>
+</body>
 
-
+------------------------------------------------------------------------
 
 
 
