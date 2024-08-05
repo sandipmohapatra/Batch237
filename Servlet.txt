@@ -2026,8 +2026,44 @@ JSP EXAMPLE-3 (EXPRESSION TAG)
 
     </body>
 ------------------------------------------------------------------------------------------------------------------
+JSP EXAMPLE-4
+---------------------------------
+<body>
+        <h1>Hello World!</h1>
+        <form action="second.jsp">
+            username:<input type="text" name="user">
+            <input type="submit" value="submit">
+       </form>
+    </body>
+</html>
+-------------------------------------------------------------------------
+<body>
+      <%!String user;%>
+      <%
+      user=request.getParameter("user");
+      out.println("the value of user is="+user);
+      %>
+   
+      <br>
+      the username is=<%=user%>
+    </body>
 
+---------------------------------------------------------------------------------------------------
+JSP EXAMPLE-5
+-------------------------------
+<%@page language="java"%>
+<%@page buffer="16kb"%>
+<%@page buffer="16kb" autoFlush="true"%>
+<%@page session="true" %>
+<%@page import="java.util.*"%>
+<%
+Date d=new Date();
+out.println(d);
 
+out.println(d.getMonth());
+
+%>
+-------------------------------------------------------------------------------------------------------------
 
 
 
