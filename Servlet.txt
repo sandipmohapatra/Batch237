@@ -1947,7 +1947,9 @@ public class urlrewrite1 extends HttpServlet
      }       
      }
 ------------------------------------------------------------------------------------------------------------------
-
+url design
+--------------------------
+http://localhost:8087/HiddenField/urlhidden?id=1001&frm=1
 
 
 
