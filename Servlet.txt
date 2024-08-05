@@ -1791,7 +1791,37 @@ public class getcookies extends HttpServlet
                out.close();   
     }     }}
 --------------------------------------------------------------------------
+Difference between session and cookies
+----------------------------------------------------------------------------
+Sessions and cookies are both mechanisms for maintaining state in web applications, but they operate differently and serve different purposes.
 
+1)Cookies
+Storage Location:
+2)Stored on the client's browser.
+Sent with every HTTP request to the server within the domain scope.
+3)Data Size:
+Typically limited to around 4KB of data per cookie.
+4)Lifetime:
+Can be persistent (saved on disk) or temporary (session cookies that are deleted when the browser is closed).
+5)Security:
+Less secure as they reside on the client-side and can be manipulated or stolen.
+--------------------------------------------------------------------------------------------------
+Sessions
+1)Storage Location:
+Stored on the server.
+The session ID is stored on the client as a cookie .
+2)Data Size:
+Can store larger amounts of data since the data is stored on the server.
+3)Lifetime:
+Typically lasts until the user logs out or the session expires (timeout).
+4)Security:
+More secure as the actual data is stored on the server.
+Only the session ID is sent back and forth, reducing the risk of data exposure.
+-------------------------------------------------------------------------------------------------------
+Cookies are small pieces of data stored on the client side, suitable for lightweight data and preferences.
+---------------------------------------------------------------------------------------
+Sessions store data on the server, suitable for more sensitive or larger pieces of data that need to be kept secure and accessible across different pages during a user's visit.
+-------------------------------------------------------------------------------------------------------
 
 
 
