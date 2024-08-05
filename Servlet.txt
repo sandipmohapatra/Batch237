@@ -2075,8 +2075,39 @@ JSP EXAMPLE-6
         </select>
     </body>
 ---------------------------------------------------------------------------------------------------------------------------
+JSP EXAMPLE-7
+--------------------------------
+Test1.jsp
+-----------------
+<body>
+        <form action="test2.jsp">
+            age=<input type="text" name="n1">
+            <input type="submit" value="submit">
+        </form>
+    </body>
+-------------------------------------------
+test2.jsp
+------------------------------------------
+<%@page errorPage="error.jsp"%>
 
+<%!String name;
+    int age;
+    %>
+          
+    <% name=request.getParameter("n1");
+    age=Integer.parseInt(name);
+    out.println("the age is"+age);%>
+--------------------------------------------------------------------------------------
+error.jsp
+----------------------------------
+<%@page isErrorPage="true" %>
+<%
 
+out.println("enter only the number");
+out.println("<a href='Test1.jsp'>form</a>");
+
+%>
+------------------------------------------------------------------------------------------
 
 
 
