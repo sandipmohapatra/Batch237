@@ -1795,15 +1795,15 @@ Difference between session and cookies
 ----------------------------------------------------------------------------
 Sessions and cookies are both mechanisms for maintaining state in web applications, but they operate differently and serve different purposes.
 
-1)Cookies
+Cookies
 Storage Location:
-2)Stored on the client's browser.
+1)Stored on the client's browser.
 Sent with every HTTP request to the server within the domain scope.
-3)Data Size:
+2)Data Size:
 Typically limited to around 4KB of data per cookie.
-4)Lifetime:
+3)Lifetime:
 Can be persistent (saved on disk) or temporary (session cookies that are deleted when the browser is closed).
-5)Security:
+4)Security:
 Less secure as they reside on the client-side and can be manipulated or stolen.
 --------------------------------------------------------------------------------------------------
 Sessions
@@ -1822,8 +1822,126 @@ Cookies are small pieces of data stored on the client side, suitable for lightwe
 ---------------------------------------------------------------------------------------
 Sessions store data on the server, suitable for more sensitive or larger pieces of data that need to be kept secure and accessible across different pages during a user's visit.
 -------------------------------------------------------------------------------------------------------
+Hidden Fields
+------------------------
+urlhidden.html
+--------------------------------
+<html>
+     </head>
+     <body>
+      <form action="urlhidden" method='post'>
+       
+          ID:<input type="text" name="id">
+          <input type="hidden" name="frm" value="1">
+          <input type="submit" value="submit">
+     </form>
+    </body>
+</html>
+-----------------------------------------------------------------------------------------------
+urlhidden.java
+-----------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/urlhidden")
 
+public class urlhidden extends HttpServlet 
+{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException 
+	{
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String formid=request.getParameter("frm");
+		if(formid.equals("1"))
+		{
+			out.println("The value is "+formid);
+			out.println("This is an example of Hidden Field<br>");
+		}
+		else
+		{
+			out.println("This is an example of Hidden Field<br>");
+		}	}}
+-------------------------------------------------------------------------------------------------------------------
+URL Re-written
+---------------------------------------
+urlrewriting.html
+-----------------------------------
+<html>
+     </head>
+ <body bgcolor="orange">
+      <form action="urlrewriting">
+          name<input type="text" name="user"><br><br>
+          <input type="submit" value="submit">
+      </form>
+  </body>
+</html>
+--------------------------------------------------------------------------------
+urlrewriting.java
+---------------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/urlrewriting")
+public class urlrewriting extends HttpServlet {
 
+     protected void service(HttpServletRequest request, HttpServletResponse response)
+             throws ServletException, IOException {
+          response.setContentType("text/html");
+          PrintWriter out = response.getWriter();
+          String name=request.getParameter("user");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>url rewriting</title>");  
+            out.println("</head>");
+            out.println("<body bgcolor='orange'>");
+             
+            out.println("This is first servlet class<br>");
+            out.println("The username="+name+"<br>");
+            out.println("<a href='urlrewrite1?name="+name+"'>click1</a>");
+            out.println("<a href='urlrewrite1?name="+name+"&a2=Bangalore&salary=12000'> click2</a>");
+            out.println("</form>");
+            out.println("</body>");
+            out.println("</html>");
+          
+       
+          }
+     }
+----------------------------------------------------------------------------------------------------------------------
+urlrewrite1.java
+---------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/urlrewrite1")
+
+public class urlrewrite1 extends HttpServlet 
+{
+     protected void service(HttpServletRequest request, HttpServletResponse response)
+             throws ServletException, IOException {
+          response.setContentType("text/html");
+          PrintWriter out = response.getWriter();
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet login</title>");  
+            out.println("</head>");
+            out.println("<body bgcolor='orange'>");
+            out.println("<h1>Login page</h1>");
+            out.println("Second servlet class<br>");
+            String name1=request.getParameter("name");
+            out.println("The name is="+name1);
+            String address=request.getParameter("a2");
+            out.println("The address is="+address);
+            String salary=request.getParameter("salary");
+            out.println("The salary is="+salary);
+            out.println("</body>");
+            out.println("</html>");
+     }       
+     }
+------------------------------------------------------------------------------------------------------------------
 
 
 
