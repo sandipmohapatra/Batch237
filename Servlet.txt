@@ -1003,7 +1003,7 @@ it is used for super class used by jsp container used mainly for custom tag libr
 Include Directives:-
 -----------------------------
 It lets us to include files at the time the jsp page is translated into servlet.
-it treats the contents of the file to be included as if it were part of the original page.It include resources at runtime.
+it treats the contents of the file to be included as if it were part of the original page. It include resources at runtime.
 <%@ include file="include.jsp"%>
 
 Custom tag libraries :-
@@ -1950,6 +1950,82 @@ public class urlrewrite1 extends HttpServlet
 url design
 --------------------------
 http://localhost:8087/HiddenField/urlhidden?id=1001&frm=1
+------------------------------------------------------------------------------
+JSP EXAMPLE-1
+---------------------------------------------
+<html>
+    <head>
+          <title>JSP Page</title>
+    </head>
+    <body>
+
+        <%  out.println("Scripting tag"); %>
+
+        <h1>Welcome to jsp</h1>
+
+        <% out.println("welcome to jsp page"); %>
+        
+        
+    </body>
+</html>
+--------------------------------------------------------------------------------
+JSP EXAMPLE-2 (DECLARATION TAG)
+----------------------------------------------------------------------
+
+<html>
+    <head>
+         <title>JSP Page</title>
+    </head>
+
+    <body>
+         <%
+        int a=10,b=20,sum;
+        sum=a+b;
+        out.println("the sum of two numbers is"+sum);
+        %>
+          
+        <h1>Hello World!</h1>
+       
+
+    </body>
+</html>
+
+-------------------------------------------------------------------------------------------------------------
+JSP EXAMPLE-3 (EXPRESSION TAG)
+-----------------------------------------------------------------
+<body>
+        <h1>Hello World!</h1>
+//expression tag
+       
+ <%
+        out.print("expression=");
+        %>
+
+        <%= 5+4 %>
+
+
+//declarative
+
+        <%int sum, a, b;%>
+        <%
+              a=10;
+              b=20;
+
+        sum=a+b;
+        out.println("the sum of numbers is"+sum);
+
+        %>
+
+     <%=5+4 %>
+      
+        <font color="red" size="4">
+            the sum of <%=a%> and <%=b%> is <%=sum%>
+
+        </font>
+                     
+
+    </body>
+------------------------------------------------------------------------------------------------------------------
 
 
 
