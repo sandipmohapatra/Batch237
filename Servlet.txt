@@ -1823,7 +1823,7 @@ Cookies are small pieces of data stored on the client side, suitable for lightwe
 Sessions store data on the server, suitable for more sensitive or larger pieces of data that need to be kept secure and accessible across different pages during a user's visit.
 -------------------------------------------------------------------------------------------------------
 Hidden Fields
-------------------------
+--------------------------------
 urlhidden.html
 --------------------------------
 <html>
@@ -1848,21 +1848,26 @@ import javax.servlet.http.*;
 
 public class urlhidden extends HttpServlet 
 {
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException 
 	{
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+		String x=request.getParameter("id");
 		String formid=request.getParameter("frm");
 		if(formid.equals("1"))
 		{
 			out.println("The value is "+formid);
+			out.println("The value of ID is "+x);
 			out.println("This is an example of Hidden Field<br>");
 		}
 		else
 		{
-			out.println("This is an example of Hidden Field<br>");
-		}	}}
+			out.println("This is not an example of Hidden Field<br>");
+		}
+
+	}
+}
 -------------------------------------------------------------------------------------------------------------------
 URL Re-written
 ---------------------------------------
