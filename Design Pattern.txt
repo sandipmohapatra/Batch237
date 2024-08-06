@@ -1,4 +1,5 @@
 Design Patterns in Java
+------------------------------------------------
 A design patterns are well-proved solution for solving the specific problem/task.
 They are reusable in multiple projects.
 They provide the solutions that help to define the system architecture.
@@ -311,33 +312,224 @@ class Dog extends Animal {
     class Cat extends Animal {
         void makeSound() {
             System.out.println("Meow");
-        }
-
-    }
-
+        }    }
 public class Snippet 
 {
 	public static void main(String[] args) 
 	{
-		
 	List<Animal> animals = new ArrayList<>();
 	animals.add(new Dog());
 	animals.add(new Cat());
-
 	for (Animal animal : animals) 
 	{
 	    animal.makeSound();  // Output: Bark, Meow
-	}
-	
-}
-}
+	}}}
 -----------------------------------------------------------------------------------
 
+A Bridge Pattern says that just "decouple the functional abstraction from the implementation so that the two can vary independently".
 
+// Implementer interface
+interface DrawAPI {
+    void drawCircle(int radius, int x, int y);
+}
 
+// Concrete Implementers
+class RedCircle implements DrawAPI {
+    public void drawCircle(int radius, int x, int y) {
+        System.out.println("Drawing Circle[ color: red, radius: " + radius + ", x: " + x + ", " + y + "]");
+    }
+}
 
+class GreenCircle implements DrawAPI {
+    public void drawCircle(int radius, int x, int y) {
+        System.out.println("Drawing Circle[ color: green, radius: " + radius + ", x: " + x + ", " + y + "]");
+    }
+}
 
+// Abstraction
+abstract class Shape {
+    protected DrawAPI drawAPI;
 
+    protected Shape(DrawAPI drawAPI) {
+        this.drawAPI = drawAPI;
+    }
+
+    public abstract void draw();
+}
+
+// Refined Abstraction
+class Circle extends Shape {
+    private int x, y, radius;
+
+    public Circle(int x, int y, int radius, DrawAPI drawAPI) {
+        super(drawAPI);
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
+    public void draw() {
+        drawAPI.drawCircle(radius, x, y);
+    }
+}
+
+// Main class to demonstrate the pattern
+public class BridgePatternDemo {
+    public static void main(String[] args) {
+        Shape redCircle = new Circle(100, 100, 10, new RedCircle());
+        Shape greenCircle = new Circle(100, 100, 10, new GreenCircle());
+
+        redCircle.draw();
+        greenCircle.draw();
+    }
+}
+--------------------------------------------------------------------------------------------------------
+Explanation
+
+DrawAPI: This is the implementer interface. It defines a method drawCircle that will be implemented by the concrete classes.
+RedCircle and GreenCircle: These are concrete implementers that provide specific implementations of the drawCircle method.
+Shape: This is the abstract class that contains a reference to the DrawAPI interface.
+Circle: This is a refined abstraction that extends the Shape class and provides a specific implementation of the draw method.
+
+-----------------------------------------------------------------------------------------------------------------------
+Benefits of Bridge Design Pattern
+Decoupling Abstraction from Implementation: It allows you to vary the implementation independently from the abstraction.
+Increased Flexibility: By using composition rather than inheritance, you can change the abstraction and the implementation independently.
+Better Code Maintainability: It simplifies the code structure by separating concerns, making it easier to maintain and extend.
+---------------------------------------------------------------------------------------------------------------------------------
+Proxy Design Pattern
+------------------------------------------
+The Proxy Design Pattern is a structural design pattern that provides a placeholder for another object to control access to it. This pattern is useful when you need to control access to an object, add additional functionality, or delay the creation of an expensive object until it's actually needed.
+
+Subject: Define an interface or an abstract class for the object that will be accessed.
+Real Subject: Implement the Subject interface with the actual object that the proxy will represent.
+Proxy: Create a class that implements the Subject interface and controls access to the Real Subject.
+---------------------------------------------------------------------------------------------------------------
+// Subject interface
+interface Image {
+    void display();
+}
+
+// Real Subject
+class RealImage implements Image {
+    private String fileName;
+
+    public RealImage(String fileName) {
+        this.fileName = fileName;
+        loadFromDisk(fileName);
+    }
+
+    private void loadFromDisk(String fileName) {
+        System.out.println("Loading " + fileName);
+    }
+
+    public void display() {
+        System.out.println("Displaying " + fileName);
+    }
+}
+
+// Proxy
+class ProxyImage implements Image {
+    private RealImage realImage;
+    private String fileName;
+
+    public ProxyImage(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void display() {
+        if (realImage == null) {
+            realImage = new RealImage(fileName);
+        }
+        realImage.display();
+    }
+}
+
+// Main class to demonstrate the pattern
+public class ProxyPatternDemo {
+    public static void main(String[] args) {
+        Image image = new ProxyImage("test_10mb.jpg");
+
+        // Image will be loaded from disk
+        image.display();
+        System.out.println("");
+
+        // Image will not be loaded from disk
+        image.display();
+    }
+}
+-----------------------------------------------------------------------------------------------------------------
+Image: This is the subject interface that defines the display method.
+RealImage: This is the real subject class that implements the Image interface. It represents the actual object that is being proxied. In its constructor, it simulates loading an image from disk.
+ProxyImage: This is the proxy class that also implements the Image interface. It contains a reference to the RealImage object and controls access to it. The display method in the proxy class creates the real image object only when it is needed (i.e., when the display method is called for the first time).
+ProxyPatternDemo: This class demonstrates the use of the proxy pattern. It creates a ProxyImage object and calls its display method twice. The first call loads the image from the disk, while the second call does not because the image has already been loaded.
+------------------------------------------------------------------------------------
+Benefits of Proxy Design Pattern
+Control Access: The proxy can control access to the real subject, allowing for authentication, logging, or other checks.
+Lazy Initialization: The proxy can delay the creation of the real object until it's needed, which can improve performance.
+Additional Functionality: The proxy can add additional functionality before or after forwarding a request to the real subject.
+This pattern is particularly useful in scenarios like virtual proxies for lazy loading, protection proxies for access control, and remote proxies for accessing objects in different address spaces.
+--------------------------------------------------------------------------------------------------------------------
+The "Gang of Four" (GoF) refers to the four authors of the influential book "Design Patterns: Elements of Reusable Object-Oriented Software," published in 1994. The authors are Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides. This book is a cornerstone in the field of software engineering, specifically in the area of design patterns.
+
+Design patterns are typical solutions to common problems in software design. They are templates designed to help write code that is more flexible, reusable, and maintainable. The GoF book classifies 23 design patterns into three categories:
+----------------------------------------------------------------------------------------------------------
+Creational Patterns: These deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. The aim is to abstract the instantiation process. Examples include:
+
+Singleton: Ensures a class has only one instance and provides a global point of access to it.
+
+Factory Method: Defines an interface for creating an object but lets subclasses alter the type of objects that will be created.
+
+Abstract Factory: Provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+
+Builder: Separates the construction of a complex object from its representation so that the same construction process can create different representations.
+
+Prototype: Creates new objects by copying an existing object, known as the prototype.
+
+-----------------------------------------------------------------------------------------------------
+Structural Patterns: These deal with object composition or the ways to compose objects to form larger structures. Examples include:
+
+Adapter: Allows incompatible interfaces to work together.
+
+Bridge: Separates an object’s interface from its implementation so that the two can vary independently.
+
+Composite: Composes objects into tree structures to represent part-whole hierarchies.
+
+Decorator: Adds additional responsibilities to an object dynamically.
+
+Facade: Provides a unified interface to a set of interfaces in a subsystem.
+
+Flyweight: Reduces the cost of creating and manipulating a large number of similar objects.
+
+Proxy: Provides a surrogate or placeholder for another object to control access to it.
+
+------------------------------------------------------------------------------------------------------------
+Behavioral Patterns: These are concerned with algorithms and the assignment of responsibilities between objects. Examples include:
+
+Chain of Responsibility: Passes a request along a chain of handlers.
+
+Command: Encapsulates a request as an object, thereby allowing parameterization of clients with queues, requests, and operations.
+
+Interpreter: Implements a specialized language.
+
+Iterator: Provides a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
+
+Mediator: Defines an object that encapsulates how a set of objects interact.
+
+Memento: Captures and externalizes an object’s internal state without violating encapsulation, so the object can be restored to this state later.
+
+Observer: Defines a dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
+
+State: Allows an object to alter its behavior when its internal state changes.
+
+Strategy: Defines a family of algorithms, encapsulates each one, and makes them interchangeable.
+
+Template Method: Defines the skeleton of an algorithm in a method, deferring some steps to subclasses.
+
+Visitor: Represents an operation to be performed on the elements of an object structure, allowing new operations to be defined without changing the classes of the elements on which it operates.
+
+These patterns help software engineers and developers tackle complex design challenges, ensuring their solutions are efficient, scalable, and easy to maintain.
+-------------------------------------------------------------------------------------------------------------
 
 
 
