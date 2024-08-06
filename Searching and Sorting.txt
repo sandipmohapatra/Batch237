@@ -9,7 +9,7 @@ Used for static memory allocation.
 Stores primitive data types (e.g., int, float) and references to objects.
 Each thread has its own stack, which stores method calls, local variables, and references.
 
-----------------------------------------------
+-----------------------------------------------------------------------------------------
 Heap Memory:
 
 Used for dynamic memory allocation.
@@ -38,13 +38,16 @@ Conclusion
 Effective memory management in Java is crucial for building efficient and reliable applications. By understanding how the JVM handles memory and following best practices, developers can minimize the risk of memory leaks and optimize the performance of their applications.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing in half the portion of the list that could contain the item, until you've narrowed down the possible locations to just one.
----------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+4 5 6 7 8 10 12
+----------------------------------------------------------------------------
 public class BinarySearch 
 {
     // Returns the index of key if it is present in array[], else return -1
     public static int binarySearch(int[] array, int key) {
         int left = 0, right = array.length - 1;
-        while (left <= right) {
+        while (left <= right) 
+{
             int mid = left + (right - left) / 2;
 
             // Check if key is present at mid
@@ -89,7 +92,7 @@ If the element is not found, return -1.
 
 Usage
 The example in the main method shows how to use the binarySearch method. It searches for the key 10 in the array {2, 3, 4, 10, 40} and prints the result.
--------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
 linear search in java
 Linear search is a straightforward algorithm for finding a specific element in a list. It works by sequentially checking each element of the list until the desired element is found or the list is exhausted.
 
@@ -114,7 +117,7 @@ public class LinearSearch
             System.out.println("Element found at index " + result);
     }
 }
--------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
 
 Loop through each element of the array:
 The loop runs from the first element (index 0) to the last element (index array.length - 1).
@@ -124,7 +127,7 @@ If the element is not found, return -1:
 If the loop completes without finding the key, return -1 indicating the element is not present in the array.
 Usage
 The example in the main method demonstrates how to use the linear Search method. It searches for the key 10 in the array {2, 3, 4, 10, 40} and prints the result.
------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
 Bubble Sort
 ---------------------
 public class BubbleSort {
@@ -403,134 +406,75 @@ Sorted array:
 1 5 7 8 9 10 
 
 --------------------------------------------------------------------------
-Heap Sort
-----------------
-Heap Sort
-Heap Sort is a comparison-based sorting algorithm that uses a binary heap data structure. It divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region. It can be seen as an improved selection sort.
+Binary Search
+----------------------
+The time complexity of binary search is O(log n), where n is the number of elements in the array. This logarithmic time complexity means that the search time increases slowly as the size of the array grows. 
+Binary search is more efficient than linear search, which has a time complexity of O(n). Binary search works by:
+Reducing the search space by half at each step
+Checking if the middle-most element matches the target
+Performing binary search on a subarray of size at most n/2 if the middle element does not match the target. Continuing recursively until the subarray is empty
 
-Steps in Heap Sort
-Build a max heap from the input data.
-Extract the maximum element from the heap (swap it with the last element of the heap and reduce the size of the heap by one).
-Heapify the root of the heap to maintain the max heap property.
-Repeat steps 2 and 3 until the size of the heap is greater than 1.
-Pseudocode
-Here's a simple pseudocode for Heap Sort:
+*The best-case time complexity of binary search is O(1) when the central index directly matches the desired value.
+--------------------------------------------------------------------------------------------------------------------
+Linear search
+------------------------
+The time complexity of linear search is O(n), where n is the number of elements in the list. This means that the time it takes for the algorithm to execute is linearly dependent on the size of the input. As the size of the input increases, so does the time it takes for the algorithm to execute. 
 
-procedure heapSort(A: array of items)
-    buildMaxHeap(A)
-    for i = length(A) - 1 downto 1
-        swap(A[0], A[i])
-        heapSize := heapSize - 1
-        maxHeapify(A, 0)
+The time complexity of linear search algorithms is O(n), where n is the number of elements in the list. It is used for smaller datasets and the data set is unsorted.
+---------------------------------------------------------------------------------------------
+Bubble sort
+-----------------------
+Bubble sort has a time complexity of O(N2) which makes it very slow for large data sets. Bubble sort is a comparison-based sorting algorithm, which means that it requires a comparison operator to determine the relative order of elements in the input data set.
 
-procedure buildMaxHeap(A: array of items)
-    heapSize := length(A)
-    for i = floor(length(A) / 2) downto 0
-        maxHeapify(A, i)
+The time complexity of bubble sort in Java is:
+Worst-case: O(n^2)
+Average-case: O(n^2)
+Best-case: O(n)
+--------------------------------------------------------------------------
+Selection sort
+---------------------------------
+The time complexity of selection sort in Java is O(n^2) in all cases (best, average, and worst).
+This is because:
+The outer loop iterates through the array n times to find the minimum element in the unsorted part.
+The inner loop iterates through the unsorted part of the array (which decreases in size with each iteration of the outer loop) to find the minimum element.
+Regardless of the input data, selection sort always performs the same number of comparisons.
+Therefore, the overall time complexity is O(n^2).
+--------------------------------------------------------------------------------------
+Quick Sort
+-----------------
+Best case: O(n log n) - This occurs when the pivot consistently divides the array into two roughly equal halves.
 
-procedure maxHeapify(A: array of items, i: index)
-    left := 2 * i + 1
-    right := 2 * i + 2
-    largest := i
-    if left < heapSize and A[left] > A[largest]
-        largest := left
-    if right < heapSize and A[right] > A[largest]
-        largest := right
-    if largest != i
-        swap(A[i], A[largest])
-        maxHeapify(A, largest)
----------------------------------------------------------------------------------------------------------------------
-public class HeapSort {
-    public void sort(int arr[]) {
-        int n = arr.length;
+Average case: O(n log n) - This is the expected performance for most inputs.
 
-        // Build heap (rearrange array)
-        for (int i = n / 2 - 1; i >= 0; i--)
-            heapify(arr, n, i);
+Worst case: O(n^2) - This occurs when the pivot selection consistently results in unbalanced partitions, such as when the array is already sorted or nearly sorted.
+----------------------------------------------------------------------------------------------
+Quick Sort
+----------------------------
+In the best and average cases, the algorithm divides the array into halves at each recursion level, resulting in a logarithmic number of levels (log n). At each level, the algorithm performs O(n) operations to partition the array. Therefore, the total time complexity becomes O(n log n).
+In the worst case, the pivot selection always results in one partition with a single element and another partition with the remaining elements. This leads to a linear number of recursion levels (n). At each level, the algorithm still performs O(n) operations. Hence, the total time complexity becomes O(n^2).
 
-        // One by one extract an element from heap
-        for (int i = n - 1; i > 0; i--) {
-            // Move current root to end
-            int temp = arr[0];
-            arr[0] = arr[i];
-            arr[i] = temp;
+The time complexity of Quick Sort is O(n log n) on average case, but can become O(n^2) in the worst-case
+-------------------------------------------------------------------------------------------------------
+Merge sort
+--------------------
+The time complexity of merge sort in Java, and in any other language, is O(n log n) for all cases: best, average, and worst. 
+This means that the number of operations required to sort an array of size n grows logarithmically with n.
 
-            // call max heapify on the reduced heap
-            heapify(arr, i, 0);
-        }
-    }
+The time complexity of merge sort is O(n*Log n) for all cases (best, average and worst).
+--------------------------------------------------------------------------------------------------
+Insertion Sort
+------------------------
+The time complexity of insertion sort in Java is the same as in any other language:
+Best case: O(n) - When the array is already sorted.
+Average case: O(n²) - When the array is randomly ordered.
+Worst case: O(n²) - When the array is in reverse order.
 
-    // To heapify a subtree rooted with node i which is
-    // an index in arr[]. n is size of heap
-    void heapify(int arr[], int n, int i) {
-        int largest = i; // Initialize largest as root
-        int left = 2 * i + 1; // left = 2*i + 1
-        int right = 2 * i + 2; // right = 2*i + 2
+Insertion sort is a simple and efficient algorithm for small input sizes or partially sorted data. It has a time complexity of O(n^2) in the worst case and O(n) in the best case. It is a stable sorting algorithm that maintains the relative order of equal elements.
+-------------------------------------------------------------------------------------------------
 
-        // If left child is larger than root
-        if (left < n && arr[left] > arr[largest])
-            largest = left;
 
-        // If right child is larger than largest so far
-        if (right < n && arr[right] > arr[largest])
-            largest = right;
 
-        // If largest is not root
-        if (largest != i) {
-            int swap = arr[i];
-            arr[i] = arr[largest];
-            arr[largest] = swap;
 
-            // Recursively heapify the affected sub-tree
-            heapify(arr, n, largest);
-        }
-    }
 
-    // A utility function to print array of size n
-    static void printArray(int arr[]) {
-        int n = arr.length;
-        for (int i = 0; i < n; ++i)
-            System.out.print(arr[i] + " ");
-        System.out.println();
-    }
 
-    // Driver program
-    public static void main(String args[]) {
-        int arr[] = {12, 11, 13, 5, 6, 7};
-        int n = arr.length;
 
-        System.out.println("Unsorted array:");
-        printArray(arr);
-
-        HeapSort ob = new HeapSort();
-        ob.sort(arr);
-
-        System.out.println("Sorted array:");
-        printArray(arr);
-    }
-}
-Explanation
-sort() Method:
-
-Builds a max heap from the input array.
-Iteratively extracts the maximum element from the heap, places it at the end of the array, and reduces the heap size by one.
-Calls heapify() to maintain the max heap property.
-heapify() Method:
-
-Ensures the subtree rooted at index i satisfies the max heap property.
-Compares the root element with its left and right children.
-Swaps the root with the largest child and recursively heapifies the affected subtree.
-printArray() Method:
-
-Prints the elements of the array.
-Main Method:
-
-Initializes an array.
-Prints the unsorted array.
-Calls sort() to sort the array.
-Prints the sorted array.
-Example Output
-12 11 13 5 6 7 
-Sorted array:
-5 6 7 11 12 13 
----------------------------------------------------------------------------------
