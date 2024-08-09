@@ -16,6 +16,46 @@ service()/doGet()/doPost() :- This execute for 'n' no of times .It accepts reque
 destroy():-This execute for one time .It is used to delete the  memory block. 
 
 ----------------------------------------------------------------------------------------------------------------------
+In servlets, GET and POST are two HTTP request methods used to interact with web servers. 
+GET: Used to request data from the server. It retrieves information from the server and doesn't alter any data on the server.
+POST: Used to send data to the server, typically to create or update resources. It's often used when submitting form data or uploading a file.
+--------------------------------------------------------------------------------------------------
+GET:
+Data is sent as part of the URL, appended as query parameters.
+Example: http://example.com/resource?name=value.
+Limited amount of data can be sent (browser-dependent, typically around 2048 characters).
+POST:
+Data is sent in the body of the HTTP request.
+Allows for a larger amount of data to be sent.
+Suitable for sending sensitive data as it is not exposed in the URL.
+---------------------------------------------------------------------
+GET: Can be cached by browsers and intermediate caches since the request URL is static.
+POST: Generally not cached as it changes the server state.
+-----------------------------------------------------------------------------------
+GET: Can be bookmarked since the parameters are in the URL.
+POST: Cannot be bookmarked as the data is in the request body and not visible in the URL.
+---------------------------------------------------------------------------------------------------
+GET:
+In a servlet, the doGet() method is called to handle GET requests.
+Typically used to fetch and display data.
+POST:
+In a servlet, the doPost() method is called to handle POST requests.
+Typically used to submit form data, handle file uploads, or perform server-side processing that modifies data.
+-----------------------------------------------------------------------------------------
+public class MyServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Handle GET request
+    }
+----------------------------------------------------------------------------------
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Handle POST request
+    }
+}
+----------------------------------------------------------------------------------------------
+Summary:
+GET: Use when you need to retrieve and display data without modifying the server state.
+POST: Use when you need to send data to the server, especially when the data is complex or sensitive, and when it results in a change on the server.
+--------------------------------------------------------------------------------------------------------------
 <html>
 <body bgcolor=cyan>
 <h1>Employee Registration Page</h1><hr>
@@ -739,7 +779,7 @@ getSession(false):-The web container search for the old session object.
 servlets are multithreaded for each client request a separate thread will start.
 
 Difference between GET and POST?
-get and post are used to process the request of a client .get method is a part of url.so we can send less amount of data through get. The amount of information limited is 240-255 character.
+get and post are used to process the request of a client .get method is a part of url.so we can send less amount of data through get. The amount of information limited is 2048 character.
 But using post we can post larger amount of data through hidden field.
  
 Session are more secure and fast because they are stored at server side.
@@ -776,7 +816,7 @@ example-4
 ----------------------
 <html>
 <body bgcolor=cyan>
-<form action="Second" method=get>
+<form action="Second" method=post>
 <h1><center>Employee Login Page</center></h1><hr>
 <table>
 <tr><td>Enter  Username<td><input type=text name=t1 size=20></tr>
@@ -793,7 +833,7 @@ import javax.servlet.http.*;
 @WebServlet("/Second")
 public class Second extends HttpServlet {
 			@Override
-	public void service(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
 	{
 		PrintWriter pw=res.getWriter();
 		res.setContentType("text/html");
@@ -2108,7 +2148,42 @@ out.println("<a href='Test1.jsp'>form</a>");
 
 %>
 ------------------------------------------------------------------------------------------
+JSP EXAMPLE-8
+---------------------------------------------------------------------------
+test4.jsp
+-------------------------
+<body>
+        <form action="test5.jsp">
+            age:<input type="text" name="n1">
+            <input type="submit" value="submit">
 
+
+        </form>
+    </body>
+
+-----------------------------------------------------------------------------------------------------------
+test5.jsp
+-----------------------------------------------
+<%!String age;
+int age1;
+%>
+<%
+try{
+age=request.getParameter("n1");
+age1=Integer.parseInt(age);
+out.println("the age is "+age1);
+}catch(Exception e)
+        {
+    out.println("plz enter only numbers");
+    %>
+
+   <%@include file="test4.jsp"%>
+
+   <%
+    }
+    %>
+
+---------------------------------------------------------------------------------------------------------------
 
 
 
