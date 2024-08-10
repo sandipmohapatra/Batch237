@@ -706,7 +706,7 @@ SERVLET
 2)servlet are durable object they remain in memory and specially instructed to be destroyed .servlet will be loaded on the address space of webserver.
 
 What is servlet Container?
-The servlet container is a part of webserver or application server that provide the network service over which request and response.A servlet container also contains and manages servlet through their life cycle.
+The servlet container is a part of webserver or application server that provide the network service over which request and response. A servlet container also contains and manages servlet through their life cycle.
 A servlet container can also be built into a host web server and installed as an add-on component to webserver.
 
 Types of servlets:-
@@ -970,11 +970,11 @@ using html,css,bootstrap,javascript as frontend
 servlet as the middle ware.
 backend using oracle.
 
---------------------------------------------------JSP---------------------------------------------------------------------
+--------------------------------JSP------------------------------------------------
 1)The code for JSP is small as compared to servlet.
-2)in jsp the html code will be separate and the JSP code will be separate.
+2)In jsp the html code will be separate and the JSP code will be separate.
 3)The jsp code is converted to servlet when it runs internally.
-4)in jsp we have jsp action tags and implicit objects.
+4)In jsp we have jsp action tags and implicit objects.
 5)jsp will take more time than servlet.
 6)there are 4 scopes:- 1)request 2)session 3)page 4)Application
 
@@ -2073,6 +2073,7 @@ JSP EXAMPLE-4
     </body>
 </html>
 -------------------------------------------------------------------------
+second.jsp
 <body>
       <%!String user;%>
       <%
@@ -2184,6 +2185,72 @@ out.println("the age is "+age1);
     %>
 
 ---------------------------------------------------------------------------------------------------------------
+Servlet without Annotation
+-------------------------------------------------
+example-1
+---------------------
+<html>
+<form action=Third method=get>
+<table>
+<tr><td>Enter your name<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter your address<td><input type=text name=t2 size=20></tr>
+<tr><td>Enter your phone no<td><input type=text name=t3 size=20></tr>
+<tr><td><td><input type=submit value=submit></tr>
+</table>
+</form>
+</html>
+----------------------------------------------------------------------------------------------------------
+web.xml
+------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>FirstServletDemo</display-name>
+  <servlet>
+        <servlet-name>Second</servlet-name>
+        <servlet-class>Second</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Second</servlet-name>
+        <url-pattern>/Second/*</url-pattern>
+    </servlet-mapping>
+  
+  <servlet>
+        <servlet-name>Third</servlet-name>
+        <servlet-class>Third</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Third</servlet-name>
+        <url-pattern>/Third/*</url-pattern>
+    </servlet-mapping>
+  
+  
+  <welcome-file-list>
+    <welcome-file>Pawan.html</welcome-file>
+     </welcome-file-list>
+</web-app>
+-------------------------------------------------------------------------------------------------------------------
+Second.java
+---------------------------------------
+import javax.servlet.*;
+import java.io.*;
+public class Second extends GenericServlet
+{
+            @Override
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException
+    {
+        PrintWriter pw=res.getWriter();
+        res.setContentType("text/html");
+        String a=req.getParameter("t1");
+        String b=req.getParameter("t2");
+        String c=req.getParameter("t3");
+        pw.println("The name is "+a);
+        pw.println("The address is "+b);
+        pw.println("The Phoneno is "+c);
+        
+}
+}
+--------------------------------------------------------------------------------------------------------------
+
 
 
 
