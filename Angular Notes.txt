@@ -189,9 +189,10 @@ oneway.component.html
     <dl>
         <dt>Name</dt>
         <dd>{{product.Name}}</dd>
-        <dd><input type="text" value="{{product.Name}}"></dd>
         <dt>Price</dt>
         <dd innerHTML="{{product.Price}}"></dd>
+	<dt>Location</dt>
+        <dd innerHTML="{{product.Location}}"></dd>
     </dl>
   </div>
 -------------------------------------------------------------------------
