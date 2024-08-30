@@ -1,4 +1,4 @@
-Angular 13
+Angular 17
 --------------------------
 1)Angular is an open source, cross platform,
 2)it provides end to end solution for building, debugging, testing and deploying.
@@ -10,7 +10,7 @@ Angular 13
 8)it has high speed and performance is better as compared to older technology 
 used webpages.
 9)Angular use AOT compiler.[Ahead-of-time].
-*it converts typescript code into efficient javascript code before building phase .
+*it converts typescript code into efficient JavaScript code before building phase .
 before browser downloads and runs that code.
 It provides faster rendering.
 10)Previous version used JIT compiler [just-in-time]
@@ -21,14 +21,24 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ---------------------------------------------------------------------------------------------
 steps for Installation
 --------------------------------------
+steps for Installation
+--------------------------------------
 1)npm install -g @angular/cli
-2)C:\projects-workspace>ng new batch201
-3)C:\projects-workspace\batch201>ng serve 
+2)C:\projects-workspace>npx ng new batch237 --no-standalone
+3)C:\projects-workspace\batch201>npx ng serve 
 4)Browser- Application starts on Live Server listening on http://localhost:4200
 To create subfolders
-5)C:\Users\sandip\Desktop\amazon\src\app>ng g c login --skipTests
+5)C:\Users\sandip\Desktop\amazon\src\app>npx ng g c Register --skip-import
 ----------------------------------------------------------------------------------------------------
 6)npm install bootstrap
+----------------------------------------------------------------------------------------------------
+angular.json
+---------------------------------------------------
+ "styles": [
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+-------------------------------------------------------------------------------------------
 
 App folder
 --------------------
