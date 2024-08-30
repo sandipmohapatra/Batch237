@@ -29,7 +29,7 @@ steps for Installation
 4)Browser- Application starts on Live Server listening on http://localhost:4200
 To create subfolders
 5)C:\Users\sandip\Desktop\amazon\src\app>npx ng g c Register --skip-import
-----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 6)npm install bootstrap
 ----------------------------------------------------------------------------------------------------
 angular.json
@@ -133,6 +133,8 @@ one way binding
 -------------------------
 oneway.component.ts
 -----------------------------------
+Example-2
+------------------------------------------
 selector:'app-root';
 templateUrl:'oneway.component.html';
 export class OnewayComponent
@@ -153,6 +155,47 @@ Price:45000.44,
 <dd innerHTML={{product.Price}}></dd>
 </dl>
 --------------------------------------------------------------------
+Example-2
+--------------------
+Example-2
+---------------------
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-example2',
+  template: `
+  <p> Hello my name is {{name}}</p>
+  <p> Hello my email is {{email}}</p>
+  <p> Hello my Address is {{address.street}} {{address.loc}} {{address.state}} {{address.city}}</p>
+  <p><Button (click)="sayName()">Say my Details</Button></p>`
+  
+})
+export class Example2Component 
+{
+name:String;
+email:String;
+address:any;
+constructor()
+{
+this.name='sandip Kumar';
+this.email='sandip@gmail.com';
+this.address=
+{
+  street:'MC Road',
+  loc:'Sivaji nagar',
+  state:'Karnataka',
+  city:'Bangalore'
+}
+}
+sayName()
+{
+console.log("My name is ",this.name);
+console.log("My email is ",this.email);
+console.log("My address is ",this.address);
+} }
+-------------------------------------------------------------
+
+
 create folder
 ---------------------
 1)desktop/flipcard/src/app>ng g c oneway --skipTests
