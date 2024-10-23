@@ -1,11 +1,11 @@
  Angular17
 ---------------------
-1)For Angular the scripting language will be typescript.Browser cannot understand typescript (.ts).
-So after compilelation of type script it is converted into .js  and the browser can understand and display the output.
+1)For Angular the scripting language will be typescript. Browser cannot understand typescript (.ts).So after compilation of type script it is converted into .js  and the browser can understand and display the output.
 
-2)Angular is faster because of virtual DOM.<p>The score =203</p>
+2)Angular is faster because of virtual DOM.
+<p>The score =203</p>
 So when the page is refreshed only the modified part will be loaded not the whole page. 
-example :- cricbuzz.com.In this only the score part is updated not the whole page.
+example :- cricbuzz.com. In this only the score part is updated not the whole page.
 
 3)It is mostly used for development of single page application.(SPA)
 
@@ -15,17 +15,17 @@ example :- cricbuzz.com.In this only the score part is updated not the whole pag
 
 6)Testing  of our application can be done using jasmine and karma.
 
-7)Angular is an open source,cross platform,front-end.
+7)Angular is an open source, cross platform, front-end.
 
-8)It provides end to end solution for building application, debugging,testing and deploying.
+8)It provides end to end solution for building application, debugging, testing and deploying.
 
 9)Typescript support Object oriented Programming language.
 
 10)Angular framework support MVC,MVVM
 
-11)The speed is high as compared to older tecnology.
+11)The speed is high as compared to older technology.
 
-12)It uses AOT compiler.[ahead-of-time].It convert the typescript into javascript.
+12)It uses AOT compiler.[ahead-of-time].It convert the typescript into JavaScript.
 It provides faster rendering.
 
 -------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ It is used with square brackets to the DOM properties.
 2)two way binding:-
 <input type=text name=t1 size=20 value="sandip">
 <input type=text name=t1 size=20 [(ngModel)]="name">
-in this user can store and update the entry.To make change in the user entry we use two-way binding. 
+in this user can store and update the entry. To make change in the user entry we use two-way binding. 
 ---------------------------------------------------------------------------------------------
 software installation
 ------------------------------------
@@ -57,7 +57,7 @@ tsc example1.ts
 4)to run:-
 node example1.js
 -------------------------------------------------------------------------
-Angular13
+Angular17
 -----------------------
 step -1)npm install -g @angular/cli
 
@@ -199,7 +199,7 @@ constructor()
     city:'Bangalore'
   }
   this.hobbies=['music','cricket','movies','football'];
-  this.foods=['Rica and Dal','Biryani','noodles','sweets'];
+  this.foods=['Rice and Dal','Biryani','noodles','sweets'];
 }
 sayName()
 {
@@ -212,7 +212,7 @@ sayName()
     this.sayName();
   }
   }
-  interface address
+interface address
 {
 street:string;
 loc:string;
@@ -372,9 +372,9 @@ height:1100;
 book.component.html
 --------------------------------------------
 <body class="background-image">
---------------------------------------------------To Create a Project-------------------------------------------------------------------
+-----------------------To Create a Project----------------------------
 step 1:-
------------------go into the app folder
+-----------------go into the app folder---------------------------------------------------
 create the modules
 1)ng g c flight
 2)ng g c register
@@ -385,7 +385,7 @@ create the modules
 ---------------------------------------------------------
 step 2:-
 modify the html files.
-register.component.html ,book,contact,feedback,search
+register.component.html ,book ,contact ,feedback ,search
 --------------------
 <body class="background-image">
 <h1>Flight Booking Page</h1><hr color="red">
@@ -562,8 +562,8 @@ public student=
   <dd>{{student.phone}}</dd>
 </dl>
 ---------------------------------------------------------------------------------
-example-2
----------------------------
+Example-2
+----------------------------------------------------------------------------------
 import { Component } from '@angular/core';
 
 @Component({
@@ -593,9 +593,9 @@ public Click()
   }
 }
 }
-------------------------------------Two way binding-----------------------------------------
-example-2
----------------------
+------------------------------Two way binding-----------------------------------------
+Example-2
+--------------------------------------------------------------------------------------------
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -636,13 +636,7 @@ example-2
 <tr><td>Name :</td><td [innerHTML]="product.name"></td></tr>
 <tr><td>Shipped to :</td><td>{{product.city}}</td></tr>
 <tr><td>Stock Present :</td><td>{{(product.inStock==true)?"Product Available":"Product not Available"}}</td></tr>
-</table>
-
-    </div>
-  </div>
-</div>
-</div>
-</body>
+</table></div></div></div></div></body>
 --------------------------------------------------------------------------------------------------------
 import { FormsModule } from '@angular/forms';
 import------FormsModule
@@ -1019,7 +1013,7 @@ Angular Pipe
 4)All pipes are derived from 'PipeTransform' .
 5)import {PipeTransform} from '@angular/core'
 6)we have some pre-defined pipes and we can also create custom pipes.
-7)Every pipe is defined with a pipe name,which is configured using "@Pipe()".
+7)Every pipe is defined with a pipe name, which is configured using "@Pipe()".
 @Pipe({name:"uppercase"})
 8)Every pipe implements  "PipeTransform" and use the transform() method.
 export class Uppercase implements PipeTransform
@@ -1168,7 +1162,7 @@ import { Multiplierpipe } from './multiplier/multiplier.pipe';
 })
 export class AppModule { }
 
-----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 import {Pipe,PipeTransform} from '@angular/core';
 @Pipe({name: 'sentencecase'})
@@ -1184,6 +1178,11 @@ export class SentenceCase implements PipeTransform
     }
 }
 -------------------------------------------------------------------------------------
+example8.html
+-------------------------------
+The Sentence case is {{msg | sentencecase }}
+
+----------------------------------------------------------------------------------------------
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-multiplier',
@@ -1379,7 +1378,7 @@ were as service can be used multiple modules or a single application (banking ap
 ------------------------------------------
 steps to create a service.
 --------------------------------------
-step 1:- we will create a service in a separte module.
+step 1:- we will create a service in a separate module.
 step 2:- We will inject it to a component and use it.
 
 1)import {Injectable} from '@angular/core'
@@ -1458,7 +1457,6 @@ public div(x:number,y:number):number
 {
   return x/y;
 }
-
 }
 -----------------------------------------------------
 import { Component } from '@angular/core';
@@ -1731,7 +1729,7 @@ export class ValidComponent {
   </form>
 </div>
 </body>
--------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
 example-13
 ----------------------
 import { Component } from '@angular/core';
@@ -1949,7 +1947,7 @@ HTTP is a protocal used by internet.we have HTTPs for security.
 The client will give the request to the server.
 In this angular is a client page which will give the request to the middleware server.
 Angular provides an HTTP client module that allows you to make HTTP requests and handle reponses in your angular Application.
-The response will be comming from the server side program.Example spring or springboot which will be running on the tomcat server.It is connected to the database like oracle or Mysql.
+The response will be comming from the server side program. Example spring or springboot which will be running on the tomcat server.It is connected to the database like oracle or Mysql.
 --------------------------------------------------
 gmail--login page --------username/password (request)
 server --reads the username/password
